@@ -1,7 +1,7 @@
 # Teoria dos Grafos
 
 ----
-### MODELAGEM DE RELACIONAMENTOS ENTRE USUÁRIOS DE UMA REDE SOCIAL HIPOTÉTICA
+## MODELAGEM DE RELACIONAMENTOS ENTRE USUÁRIOS DE UMA REDE SOCIAL HIPOTÉTICA
 
 
    A estrutura matemática combinatória grafos é conhecida na literatura computacional pelo seu poder de
@@ -21,6 +21,17 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 
 ----
 ## Funções Implementadas
+
+<details>
+  <summary>Click to expand!</summary>
+  
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
 <details>
   <summary>inicializaGrafos( )</summary>
   1. A numbered
