@@ -34,23 +34,22 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 
 <details>
   <summary>inicializaGrafos( )</summary>
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-  1. Inicializa as três estruturas.  
-    * Zera a matriz.  
-    * Aloca espaço vazio na Lista e na Lista AVL.  
+   
+  1. Inicializa as três estruturas.
+     * Zera a matriz. 
+     * Aloca espaço vazio na Lista e na Lista AVL.  
 </details>
 
 <details>
   <summary>inserirUsuario( )</summary>
+   
   1. Libera espaço nas estruturas para a inserção.  
   2. Caso usuário já esteja inserido, retornar erro.  
 </details>
 
 <details>
   <summary>inserirRelacao( )</summary>
+   
   1. Adiciona relação "é seguido de/ seguidor de".  
   2. Usuários devem estar previamente inseridos.  
   3. Caso relação já esteja inserido, oferecer opção de atualizar ao usuário.  
@@ -58,6 +57,7 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 
 <details>
   <summary>listarSeguidores( )</summary>
+   
   1. O utilizador deverá escolher um dos usuário previamente cadastrados e o sistema deve mostrar:  
     * Uma lista dos usuários que este segue.  
     * Uma lista dos usuários que seguem usuário.  
@@ -66,23 +66,27 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 
 <details>
   <summary>listarSeguidoresVelhos( )</summary>
+   
   1. Lista todos os usuários que são seguidos por usuários mais velhos.  
 </details>
 
 <details>
   <summary>atualizarRelacao( )</summary>
+   
   1. Similar a insereRelacao( ) mas esta, usuários devem estar previamente cadastrados.  
   2. Caso a relação não exista, oferer a opção do utilizador fazê-la.  
 </details>
 
 <details>
   <summary>removerUsuário( )</summary>
+   
   1. Remove um usuário previamente cadastrado, inclusive com suas relações.  
   2. Caso o usuário nãoo esteja cadastrado, retornar um erro.  
 </details>
 
 <details>
   <summary>removerRelacao( )</summary>
+   
   1. Remove uma relação previamente cadastrada  
   2. Caso algum vértice da relação não esteja inserido, retornar erro.  
 </details>
