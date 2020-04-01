@@ -6,8 +6,6 @@
 package teoriadosgrafos;
 
 import gui.TelaMain;
-import gui.TelaPrincipal;
-import gui.TelaPrincipal;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
