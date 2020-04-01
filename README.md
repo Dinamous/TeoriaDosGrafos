@@ -22,15 +22,6 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 ----
 ## Funções Implementadas
 
-<details>
-  <summary>Click to expand!</summary>
-  
-
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
 
 <details>
   <summary>inicializaGrafos( )</summary>
@@ -59,9 +50,9 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
   <summary>listarSeguidores( )</summary>
    
   1. O utilizador deverá escolher um dos usuário previamente cadastrados e o sistema deve mostrar:  
-    * Uma lista dos usuários que este segue.  
-    * Uma lista dos usuários que seguem usuário.  
-    * A estrutura AVL deve possuir a opção de ordenação (in-ordem, pre-ordem, pós-ordem).  
+     * Uma lista dos usuários que este segue.  
+     * Uma lista dos usuários que seguem usuário.  
+     * A estrutura AVL deve possuir a opção de ordenação (in-ordem, pre-ordem, pós-ordem).  
 </details>
 
 <details>
