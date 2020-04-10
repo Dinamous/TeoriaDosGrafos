@@ -1,4 +1,3 @@
-
 package Estruturas;
 
 import java.util.ArrayList;
@@ -14,25 +13,27 @@ public class MatrizADJ {
   
 public void inicializaMatriz(){
         
-        for(int i=0;i<50;i++){
-            for(int j=0;j<50;j++){
-                this.matriz[i][j]=5;
-            }
-    }
-        
-   }
+    for(int i=0;i<50;i++){
+        for(int j=0;j<50;j++){
+            matriz[i][j]=5;
+            
+        }
+    }   
+    //System.out.println(Arrays.deepToString(matriz));
+}
 
 public void insereUsuario(Usuario usuario){
     
     listaNomes.add(usuario.nome);
     
     System.out.println(Arrays.toString(listaNomes.toArray()));
+    //System.out.println(Arrays.deepToString(matriz));
     }
     
     public void insereRelacao(int posUsuario,int posSeguidor, int tempo){
-         this.matriz[posUsuario][posSeguidor] = tempo;
-        System.out.println("x ="+posUsuario +"   y="+posSeguidor + " t="+matriz[posUsuario][posSeguidor]);
-       // System.out.println(Arrays.deepToString(matriz));
+        this.matriz[posUsuario][posSeguidor] = tempo;
+        System.out.println("x =" + posUsuario + "   y=" + posSeguidor + " t=" + matriz[posUsuario][posSeguidor]);
+        System.out.println(Arrays.deepToString(matriz));
     }
     
     public ArrayList<Seguidor> listarSequidores(String nome, int posicao){//lista seguidores de um usuario
@@ -51,7 +52,7 @@ public void insereUsuario(Usuario usuario){
         
         for(int i=0;i<50;i++){
             //percorrendo a matriz pelas colunas em busca do usu solicitado
-            if(matriz[i][posicao] !=0){ //se exite algum relacionamento
+            if(matriz[i][posicao] != 0){ //se exite algum relacionamento
                 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 //buscando o nome da relação
                 

@@ -1067,8 +1067,7 @@ public class TelaMain extends javax.swing.JFrame {
 
     
     public void PreeencheTabelas(String nome, int posicao){       
-        ArrayList<Seguidor> segue,seguidor = new ArrayList();
-       
+        ArrayList<Seguidor> segue, seguidor = new ArrayList();       
         
         seguidor = matriz.listarSequidores(nome,posicao);
         segue = matriz.listarSeque(nome, posicao);
@@ -1076,7 +1075,7 @@ public class TelaMain extends javax.swing.JFrame {
         
         //Preenchendo os relacionamentos pela matriz
         DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable11.getModel();
-        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable11.getModel();
+        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable12.getModel();
         
         modelomatriz1.setNumRows(0);
         modelomatriz2.setNumRows(0);
