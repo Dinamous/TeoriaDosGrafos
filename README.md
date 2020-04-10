@@ -85,4 +85,4 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 ----
 ## Contribuições
 * [Nayara Freire](https://github.com/NayFreire)
-* Professor: Hugo Rezende
+* Professor: Hugo Resende
