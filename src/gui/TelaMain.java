@@ -45,6 +45,21 @@ public class TelaMain extends javax.swing.JFrame {
         //toda vez q alguem atualiza o comboBox
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
            
+           //lsitener do Combo box
+                
+                String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
+                String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
+
+                //colocando o nome do usuario nos campos
+                label1.setText(segue);
+                label2.setText(segue);
+                label3.setText(segue);
+                label4.setText(seguidor);
+                label5.setText(seguidor);
+                label6.setText(seguidor);
+
+                PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
+           
            atualizaCampos();
            
            
@@ -1174,20 +1189,7 @@ public class TelaMain extends javax.swing.JFrame {
                 DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
                 jComboBoxUsuarios.setModel(model);
                 
-                //lsitener do Combo box
                 
-                String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
-                String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
-
-                //colocando o nome do usuario nos campos
-                label1.setText(segue);
-                label2.setText(segue);
-                label3.setText(segue);
-                label4.setText(seguidor);
-                label5.setText(seguidor);
-                label6.setText(seguidor);
-
-                PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
