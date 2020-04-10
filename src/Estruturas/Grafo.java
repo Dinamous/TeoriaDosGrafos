@@ -6,6 +6,7 @@
 package Estruturas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -26,24 +27,21 @@ public class Grafo {
         
         ListaUsuarios.add(usuario.nome);
         matriz.insereUsuario(usuario);
-
+        
 
         contUsuario--;
         
     }
     
     public void insereRelacao(String usuario, String seguidor, int tempo){
-       
+        System.out.println(Arrays.toString(ListaUsuarios.toArray()));
         int posUsuario = ListaUsuarios.indexOf(usuario);
-        int posSeguidor = ListaUsuarios.indexOf(usuario);
+        int posSeguidor = ListaUsuarios.indexOf(seguidor);
         
         matriz.insereRelacao(posUsuario,posSeguidor,tempo);
     }
     
-    public void listarSequidores(){
-        
-    }
-    
+      
     public void listarSeguidoresVelhos(){
         
     }

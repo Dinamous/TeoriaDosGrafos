@@ -5,6 +5,7 @@
  */
 package teoriadosgrafos;
 
+import Estruturas.Grafo;
 import gui.TelaMain;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -22,6 +23,8 @@ public class TeoriaDosGrafos {
      */
     public static void main(String[] args) {
         TelaMain TP = new TelaMain();
+        Grafo grafo = new Grafo();
+       
     
        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

@@ -6,11 +6,14 @@
 package gui;
 
 import Estruturas.Grafo;
+import Estruturas.MatrizADJ;
+import Estruturas.Seguidor;
 import Estruturas.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.sql.DriverManager.println;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -24,12 +27,14 @@ import javax.swing.table.DefaultTableModel;
 public class TelaMain extends javax.swing.JFrame {
 
     Grafo grafo = new Grafo();
+    MatrizADJ matriz = new MatrizADJ();
     
     /**
      * Creates new form TelaMain
      */
     CardLayout cardLayout;
     public TelaMain() {
+        grafo.inicializaGrafo();
         initComponents();
         cardLayout = (CardLayout)(pnlCards.getLayout());
          
@@ -37,6 +42,20 @@ public class TelaMain extends javax.swing.JFrame {
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
            System.out.println(jComboBoxUsuarios.getSelectedItem());
            System.out.println(jComboBoxUsuarios.getSelectedIndex());
+           String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
+           String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
+           
+           //colocando o nome do usuario nos campos
+           label1.setText(segue);
+           label2.setText(segue);
+           label3.setText(segue);
+           label4.setText(seguidor);
+           label5.setText(seguidor);
+           label6.setText(seguidor);
+           
+           PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
+           
+           
         });
    
     }
@@ -58,6 +77,8 @@ public class TelaMain extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         pnlCards = new javax.swing.JPanel();
         pnlHome = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -90,47 +111,62 @@ public class TelaMain extends javax.swing.JFrame {
         tblListadeUsuario = new javax.swing.JTable();
         lblAvisoRelacionamento = new javax.swing.JLabel();
         pnlListarRelacionamentos = new javax.swing.JPanel();
-        pnlAddUsuario1 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        jLabel20 = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
-        jLabel22 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        label2 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTable9 = new javax.swing.JTable();
+        label5 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTable10 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jLabel17 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jLabel19 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTable11 = new javax.swing.JTable();
+        label6 = new javax.swing.JLabel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTable12 = new javax.swing.JTable();
         jLabel23 = new javax.swing.JLabel();
         jComboBoxUsuarios = new javax.swing.JComboBox<>();
+        jLabel36 = new javax.swing.JLabel();
         pnlListaUsuarios = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblListadeUsuario2 = new javax.swing.JTable();
-        pnlAtualizarRelacao = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        btnAddUsuario1 = new javax.swing.JButton();
-        lblAVISO1 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
+        pnlAtualizarRelacionamento = new javax.swing.JPanel();
+        btnCadastrarRelacao1 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         tfAddRelTempo1 = new javax.swing.JTextField();
         tfAddRelSeguidor1 = new javax.swing.JTextField();
         tfAddRelUsuario1 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        lblAvisoRelacionamento1 = new javax.swing.JLabel();
+        pnlDeletarRelacao = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        tfAddUsuarioNome2 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        tfAddUsuarioIdade1 = new javax.swing.JTextField();
+        btnAddUsuario2 = new javax.swing.JButton();
+        lblAVISO2 = new javax.swing.JLabel();
+        pnlDeletarUsuario = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        tfAddUsuarioNome1 = new javax.swing.JTextField();
+        btnAddUsuario1 = new javax.swing.JButton();
+        lblAVISO1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +232,26 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(153, 153, 255));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("DELETAR RELAÇÃO");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(153, 153, 255));
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("DELETAR USUÁRIO");
+        jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -207,12 +263,11 @@ public class TelaMain extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,15 +276,19 @@ public class TelaMain extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -237,72 +296,42 @@ public class TelaMain extends javax.swing.JFrame {
         pnlCards.setLayout(new java.awt.CardLayout());
 
         pnlHome.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Teoria dos Grafos");
+        pnlHome.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 22, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Simulação de uma rede social. Aplicando conhecimentos da disciplina.");
+        pnlHome.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 145, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Matriz de Adjacência");
+        pnlHome.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 180, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Lista de adjacência");
+        pnlHome.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 203, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Lista de adjacência em AVL");
+        pnlHome.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 226, -1, -1));
 
         jLabel6.setText("Trabalho feito por: Matheus Simões e Nayara Freire");
+        pnlHome.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 483, -1, -1));
 
         jLabel7.setText("Professor: Hugo Resende - 2020");
-
-        javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
-        pnlHome.setLayout(pnlHomeLayout);
-        pnlHomeLayout.setHorizontalGroup(
-            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabel1))
-                    .addGroup(pnlHomeLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))))
-                .addContainerGap(107, Short.MAX_VALUE))
-        );
-        pnlHomeLayout.setVerticalGroup(
-            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHomeLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addGap(25, 25, 25))
-        );
+        pnlHome.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 503, -1, -1));
 
         pnlCards.add(pnlHome, "pnlHome");
 
         pnlAddUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAddUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setText("Adicionar um novo Usuário");
+        pnlAddUsuario.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Nome:");
@@ -345,6 +374,8 @@ public class TelaMain extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
+        pnlAddUsuario.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 181, -1, -1));
+
         btnAddUsuario.setBackground(new java.awt.Color(153, 153, 255));
         btnAddUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnAddUsuario.setText("CADASTRAR USUÁRIO");
@@ -354,45 +385,13 @@ public class TelaMain extends javax.swing.JFrame {
                 btnAddUsuarioActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlAddUsuarioLayout = new javax.swing.GroupLayout(pnlAddUsuario);
-        pnlAddUsuario.setLayout(pnlAddUsuarioLayout);
-        pnlAddUsuarioLayout.setHorizontalGroup(
-            pnlAddUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAddUsuarioLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAddUsuarioLayout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addGroup(pnlAddUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAddUsuarioLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAddUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAddUsuarioLayout.createSequentialGroup()
-                        .addComponent(lblAVISO, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))))
-        );
-        pnlAddUsuarioLayout.setVerticalGroup(
-            pnlAddUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAddUsuarioLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(lblAVISO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
+        pnlAddUsuario.add(btnAddUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 184, 42));
+        pnlAddUsuario.add(lblAVISO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 260, 22));
 
         pnlCards.add(pnlAddUsuario, "pnlAddUsuario");
 
         pnlAddRelacionamento.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAddRelacionamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCadastrarRelacao.setBackground(new java.awt.Color(153, 153, 255));
         btnCadastrarRelacao.setForeground(new java.awt.Color(255, 255, 255));
@@ -403,6 +402,7 @@ public class TelaMain extends javax.swing.JFrame {
                 btnCadastrarRelacaoActionPerformed(evt);
             }
         });
+        pnlAddRelacionamento.add(btnCadastrarRelacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 184, 42));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Usuário:");
@@ -457,8 +457,11 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
+        pnlAddRelacionamento.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 273, -1, -1));
+
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel13.setText("Adicionar novo Relacionamento");
+        pnlAddRelacionamento.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 11, -1, -1));
 
         tblListadeUsuario.setBackground(new java.awt.Color(153, 153, 255));
         tblListadeUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -475,75 +478,21 @@ public class TelaMain extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(tblListadeUsuario);
 
-        lblAvisoRelacionamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlAddRelacionamento.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 72, 403, 183));
 
-        javax.swing.GroupLayout pnlAddRelacionamentoLayout = new javax.swing.GroupLayout(pnlAddRelacionamento);
-        pnlAddRelacionamento.setLayout(pnlAddRelacionamentoLayout);
-        pnlAddRelacionamentoLayout.setHorizontalGroup(
-            pnlAddRelacionamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAddRelacionamentoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(111, 111, 111))
-            .addGroup(pnlAddRelacionamentoLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(pnlAddRelacionamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAvisoRelacionamento, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlAddRelacionamentoLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(btnCadastrarRelacao, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlAddRelacionamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
-        pnlAddRelacionamentoLayout.setVerticalGroup(
-            pnlAddRelacionamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAddRelacionamentoLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAvisoRelacionamento, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrarRelacao, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        lblAvisoRelacionamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlAddRelacionamento.add(lblAvisoRelacionamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 404, 409, 76));
 
         pnlCards.add(pnlAddRelacionamento, "pnlAddRelacionamento");
 
         pnlListarRelacionamentos.setBackground(new java.awt.Color(255, 255, 255));
-
-        pnlAddUsuario1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel15.setText("Lista de Relacionamentos");
-
-        javax.swing.GroupLayout pnlAddUsuario1Layout = new javax.swing.GroupLayout(pnlAddUsuario1);
-        pnlAddUsuario1.setLayout(pnlAddUsuario1Layout);
-        pnlAddUsuario1Layout.setHorizontalGroup(
-            pnlAddUsuario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAddUsuario1Layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(120, 120, 120))
-        );
-        pnlAddUsuario1Layout.setVerticalGroup(
-            pnlAddUsuario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAddUsuario1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel15)
-                .addContainerGap(428, Short.MAX_VALUE))
-        );
+        pnlListarRelacionamentos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 153, 255));
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setText("Seguidores de X:");
+        label1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label1.setText("Seguidores de X:");
 
         jTable5.setBackground(new java.awt.Color(153, 153, 255));
         jTable5.setForeground(new java.awt.Color(255, 255, 255));
@@ -560,8 +509,8 @@ public class TelaMain extends javax.swing.JFrame {
         ));
         jScrollPane8.setViewportView(jTable5);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setText("Usuários que X segue:");
+        label4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label4.setText("Usuários que X segue:");
 
         jTable6.setBackground(new java.awt.Color(153, 153, 255));
         jTable6.setForeground(new java.awt.Color(255, 255, 255));
@@ -583,36 +532,36 @@ public class TelaMain extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
+                    .addComponent(label4)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
+                    .addComponent(label1)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+                .addGap(32, 32, 32))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(label1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel20)
+                .addComponent(label4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane1.addTab("Matriz de Adjacência", jPanel4);
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setText("Seguidores de X:");
+        label2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label2.setText("Seguidores de X:");
 
-        jTable7.setBackground(new java.awt.Color(153, 153, 255));
-        jTable7.setForeground(new java.awt.Color(255, 255, 255));
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        jTable9.setBackground(new java.awt.Color(153, 153, 255));
+        jTable9.setForeground(new java.awt.Color(255, 255, 255));
+        jTable9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -623,14 +572,14 @@ public class TelaMain extends javax.swing.JFrame {
                 "Usuário", "Tempo"
             }
         ));
-        jScrollPane10.setViewportView(jTable7);
+        jScrollPane12.setViewportView(jTable9);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setText("Usuários que X segue:");
+        label5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label5.setText("Usuários que X segue:");
 
-        jTable8.setBackground(new java.awt.Color(153, 153, 255));
-        jTable8.setForeground(new java.awt.Color(255, 255, 255));
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        jTable10.setBackground(new java.awt.Color(153, 153, 255));
+        jTable10.setForeground(new java.awt.Color(255, 255, 255));
+        jTable10.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -641,40 +590,43 @@ public class TelaMain extends javax.swing.JFrame {
                 "Usuário", "Tempo"
             }
         ));
-        jScrollPane11.setViewportView(jTable8);
+        jScrollPane13.setViewportView(jTable10);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+                    .addComponent(label5)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label2)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(label2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel22)
+                .addComponent(label5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane1.addTab("Lista de Adjacência", jPanel5);
 
-        jTable3.setBackground(new java.awt.Color(153, 153, 255));
-        jTable3.setForeground(new java.awt.Color(255, 255, 255));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        label3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label3.setText("Seguidores de X:");
+
+        jTable11.setBackground(new java.awt.Color(153, 153, 255));
+        jTable11.setForeground(new java.awt.Color(255, 255, 255));
+        jTable11.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -685,14 +637,14 @@ public class TelaMain extends javax.swing.JFrame {
                 "Usuário", "Tempo"
             }
         ));
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane14.setViewportView(jTable11);
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setText("Seguidores de X:");
+        label6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        label6.setText("Usuários que X segue:");
 
-        jTable4.setBackground(new java.awt.Color(153, 153, 255));
-        jTable4.setForeground(new java.awt.Color(255, 255, 255));
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTable12.setBackground(new java.awt.Color(153, 153, 255));
+        jTable12.setForeground(new java.awt.Color(255, 255, 255));
+        jTable12.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -703,42 +655,42 @@ public class TelaMain extends javax.swing.JFrame {
                 "Usuário", "Tempo"
             }
         ));
-        jScrollPane7.setViewportView(jTable4);
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("Usuários que X segue:");
+        jScrollPane15.setViewportView(jTable12);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+                    .addComponent(label6)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label3)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(label3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel19)
+                .addComponent(label6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane1.addTab("Lista de Adjacência em AVL", jPanel6);
 
+        pnlListarRelacionamentos.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 500, 370));
+
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Selecione um dos Usuarios cadastrado:");
+        pnlListarRelacionamentos.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 131, -1, -1));
 
         jComboBoxUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -746,49 +698,20 @@ public class TelaMain extends javax.swing.JFrame {
                 jComboBoxUsuariosActionPerformed(evt);
             }
         });
+        pnlListarRelacionamentos.add(jComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 128, 154, -1));
 
-        javax.swing.GroupLayout pnlListarRelacionamentosLayout = new javax.swing.GroupLayout(pnlListarRelacionamentos);
-        pnlListarRelacionamentos.setLayout(pnlListarRelacionamentosLayout);
-        pnlListarRelacionamentosLayout.setHorizontalGroup(
-            pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListarRelacionamentosLayout.createSequentialGroup()
-                .addGroup(pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlListarRelacionamentosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlListarRelacionamentosLayout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlListarRelacionamentosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(pnlAddUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlListarRelacionamentosLayout.setVerticalGroup(
-            pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListarRelacionamentosLayout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
-                .addGroup(pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBoxUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(pnlListarRelacionamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlListarRelacionamentosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(pnlAddUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel36.setText("Lista de Relacionamentos");
+        pnlListarRelacionamentos.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         pnlCards.add(pnlListarRelacionamentos, "pnlListarRelacionamentos");
 
+        pnlListaUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlListaUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setText("Lista de Seguidores Mais Velhos");
+        pnlListaUsuarios.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 20, -1, -1));
 
         tblListadeUsuario2.setBackground(new java.awt.Color(153, 153, 255));
         tblListadeUsuario2.setForeground(new java.awt.Color(255, 255, 255));
@@ -805,55 +728,32 @@ public class TelaMain extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tblListadeUsuario2);
 
-        javax.swing.GroupLayout pnlListaUsuariosLayout = new javax.swing.GroupLayout(pnlListaUsuarios);
-        pnlListaUsuarios.setLayout(pnlListaUsuariosLayout);
-        pnlListaUsuariosLayout.setHorizontalGroup(
-            pnlListaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaUsuariosLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel16)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlListaUsuariosLayout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-        );
-        pnlListaUsuariosLayout.setVerticalGroup(
-            pnlListaUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaUsuariosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel16)
-                .addGap(57, 57, 57)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
+        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 105, 409, 336));
 
         pnlCards.add(pnlListaUsuarios, "pnlListaUsuarios");
 
-        pnlAtualizarRelacao.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAtualizarRelacionamento.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAtualizarRelacionamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("Adicionar um novo Usuário");
-
-        btnAddUsuario1.setBackground(new java.awt.Color(153, 153, 255));
-        btnAddUsuario1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddUsuario1.setText("ATUALIZAR RELAÇÃO");
-        btnAddUsuario1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnAddUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarRelacao1.setBackground(new java.awt.Color(153, 153, 255));
+        btnCadastrarRelacao1.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarRelacao1.setText("CADASTRAR RELAÇÃO");
+        btnCadastrarRelacao1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnCadastrarRelacao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUsuario1ActionPerformed(evt);
+                btnCadastrarRelacao1ActionPerformed(evt);
             }
         });
+        pnlAtualizarRelacionamento.add(btnCadastrarRelacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel28.setText("Usuário:");
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel32.setText("Usuário:");
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel29.setText("Tempo:");
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Tempo:");
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel30.setText("Segue:");
+        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel34.setText("Segue:");
 
         tfAddRelTempo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -861,78 +761,170 @@ public class TelaMain extends javax.swing.JFrame {
 
         tfAddRelUsuario1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel32)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel34)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel33)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
+        );
+
+        pnlAtualizarRelacionamento.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("Atualizar Relacionamento");
+        pnlAtualizarRelacionamento.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        lblAvisoRelacionamento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlAtualizarRelacionamento.add(lblAvisoRelacionamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 404, 409, 76));
+
+        pnlCards.add(pnlAtualizarRelacionamento, "pnlAtualizarRelacionamento");
+
+        pnlDeletarRelacao.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDeletarRelacao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Deletar Relacionamento");
+        pnlDeletarRelacao.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel27.setText("Nome:");
+
+        tfAddUsuarioNome2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel28.setText("seguidor");
+
+        tfAddUsuarioIdade1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(88, 88, 88)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel28)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel30)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfAddUsuarioIdade1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel29)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfAddUsuarioNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27)
+                    .addComponent(tfAddUsuarioNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(tfAddUsuarioIdade1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnlAtualizarRelacaoLayout = new javax.swing.GroupLayout(pnlAtualizarRelacao);
-        pnlAtualizarRelacao.setLayout(pnlAtualizarRelacaoLayout);
-        pnlAtualizarRelacaoLayout.setHorizontalGroup(
-            pnlAtualizarRelacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAtualizarRelacaoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlAtualizarRelacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAVISO1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(112, 112, 112))
-            .addGroup(pnlAtualizarRelacaoLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jLabel24)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnlAtualizarRelacaoLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+        pnlDeletarRelacao.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        btnAddUsuario2.setBackground(new java.awt.Color(153, 153, 255));
+        btnAddUsuario2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddUsuario2.setText("DELETAR RELACIONAMENTO");
+        btnAddUsuario2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnAddUsuario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUsuario2ActionPerformed(evt);
+            }
+        });
+        pnlDeletarRelacao.add(btnAddUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 184, 42));
+        pnlDeletarRelacao.add(lblAVISO2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
+
+        pnlCards.add(pnlDeletarRelacao, "pnlDeletarRelacao");
+
+        pnlDeletarUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDeletarUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Deletar Usuário");
+        pnlDeletarUsuario.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setText("Nome:");
+
+        tfAddUsuarioNome1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
-        pnlAtualizarRelacaoLayout.setVerticalGroup(
-            pnlAtualizarRelacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAtualizarRelacaoLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel24)
-                .addGap(66, 66, 66)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(lblAVISO1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        pnlCards.add(pnlAtualizarRelacao, "pnlAtualizarRelacao\n");
+        pnlDeletarUsuario.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 181, -1, 110));
+
+        btnAddUsuario1.setBackground(new java.awt.Color(153, 153, 255));
+        btnAddUsuario1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddUsuario1.setText("DELETAR USUÁRIO");
+        btnAddUsuario1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnAddUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUsuario1ActionPerformed(evt);
+            }
+        });
+        pnlDeletarUsuario.add(btnAddUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
+        pnlDeletarUsuario.add(lblAVISO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
+
+        pnlCards.add(pnlDeletarUsuario, "pnlDeletarUsuario");
 
         jSplitPane1.setRightComponent(pnlCards);
 
@@ -940,9 +932,10 @@ public class TelaMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1015,7 +1008,7 @@ public class TelaMain extends javax.swing.JFrame {
         String usuario = tfAddRelUsuario.getText();
         String seguidor = tfAddRelSeguidor.getText();
         int tempo = Integer.parseInt(tfAddRelTempo.getText());
-            System.out.println(grafo.ListaUsuarios);
+        
         //verificando se os input informados
         //já foram cadastrados anteriormente
         if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
@@ -1047,13 +1040,61 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        cardLayout.show(pnlCards, "pnlAtualizarRelacao");
+        cardLayout.show(pnlCards, "pnlAtualizarRelacionamento");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:pnlDeletarRelacao
+        cardLayout.show(pnlCards, "pnlDeletarRelacao");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(pnlCards, "pnlDeletarUsuario");
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
 
+    private void btnAddUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddUsuario2ActionPerformed
+
+    private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
+
+    
+    public void PreeencheTabelas(String nome, int posicao){       
+        ArrayList<Seguidor> segue,seguidor = new ArrayList();
+       
+        
+        seguidor = matriz.listarSequidores(nome,posicao);
+        segue = matriz.listarSeque(nome, posicao);
+        
+        
+        //Preenchendo os relacionamentos pela matriz
+        DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable11.getModel();
+        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable11.getModel();
+        
+        modelomatriz1.setNumRows(0);
+        modelomatriz2.setNumRows(0);
+        
+        for(Seguidor x :segue){
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz1.addRow(linha);
+        }
+        for(Seguidor y :segue){
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz2.addRow(linha);
+        }
+        
+    }
     
 
     
@@ -1096,13 +1137,17 @@ public class TelaMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUsuario;
     private javax.swing.JButton btnAddUsuario1;
+    private javax.swing.JButton btnAddUsuario2;
     private javax.swing.JButton btnCadastrarRelacao;
+    private javax.swing.JButton btnCadastrarRelacao1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBoxUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1110,21 +1155,20 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1132,36 +1176,47 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable10;
+    private javax.swing.JTable jTable11;
+    private javax.swing.JTable jTable12;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
-    private javax.swing.JTable jTable8;
+    private javax.swing.JTable jTable9;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label6;
     private javax.swing.JLabel lblAVISO;
     private javax.swing.JLabel lblAVISO1;
+    private javax.swing.JLabel lblAVISO2;
     private javax.swing.JLabel lblAvisoRelacionamento;
+    private javax.swing.JLabel lblAvisoRelacionamento1;
     private javax.swing.JPanel pnlAddRelacionamento;
     private javax.swing.JPanel pnlAddUsuario;
-    private javax.swing.JPanel pnlAddUsuario1;
-    private javax.swing.JPanel pnlAtualizarRelacao;
+    private javax.swing.JPanel pnlAtualizarRelacionamento;
     private javax.swing.JPanel pnlCards;
+    private javax.swing.JPanel pnlDeletarRelacao;
+    private javax.swing.JPanel pnlDeletarUsuario;
     private javax.swing.JPanel pnlHome;
     private javax.swing.JPanel pnlListaUsuarios;
     private javax.swing.JPanel pnlListarRelacionamentos;
@@ -1174,6 +1229,9 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JTextField tfAddRelUsuario;
     private javax.swing.JTextField tfAddRelUsuario1;
     private javax.swing.JTextField tfAddUsuarioIdade;
+    private javax.swing.JTextField tfAddUsuarioIdade1;
     private javax.swing.JTextField tfAddUsuarioNome;
+    private javax.swing.JTextField tfAddUsuarioNome1;
+    private javax.swing.JTextField tfAddUsuarioNome2;
     // End of variables declaration//GEN-END:variables
 }
