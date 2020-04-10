@@ -51,14 +51,17 @@ public class Grafo {
         
     }
     
-    public void atualizarRelacao(){
+    public void atualizarRelacao(String usuario,String segue,int tempo){
+        matriz.atualizarRelacao(usuario,segue,tempo);
+        
         
     }
     
     public void removeUsuario(){
     }
     
-    public void removeRelacao(){
+    public void removeRelacao(String usuario, String segue){
+        matriz.removeRelacao(usuario,segue);
         
     }
     

@@ -23,8 +23,11 @@ public void inicializaMatriz(){
 }
 
 public void insereUsuario(String nome, int idade){
-    
+    Usuario usu = new Usuario();
     listaNomes.add(nome);
+    usu.nome = nome;
+    usu.idade = idade;
+    ListaUsuarios.add(usu);
     
     //System.out.println(Arrays.deepToString(matriz));
     }
@@ -79,15 +82,30 @@ public void insereUsuario(String nome, int idade){
         
     }
     
-    public void atualizarRelacao(){
+    public void atualizarRelacao(String usuario,String segue,int tempo){
+        int posUsuario = listaNomes.indexOf(usuario);
+        int posSegue = listaNomes.indexOf(segue);
         
+        matriz[posUsuario][posSegue] = tempo;
     }
     
     public void removeUsuario(){
     }
     
-    public void removeRelacao(){
+    public void removeRelacao(String usuario,String segue){
+        int posUsuario = listaNomes.indexOf(usuario);
+        int posSegue = listaNomes.indexOf(segue);
         
+        matriz[posUsuario][posSegue] = 0;
     }
     
+    public boolean ExisteRelacao(String usuario,String segue){
+        int posUsuario = listaNomes.indexOf(usuario);
+        int posSegue = listaNomes.indexOf(segue);
+        if(matriz[posUsuario][posSegue] != 0){
+            return true;
+        }
+        
+        return false;
+    }
 }
