@@ -41,7 +41,7 @@ public void insereUsuario(String nome, int idade){
     public ArrayList<Seguidor> listarSequidores(String nome, int posicao){//lista seguidores de um usuarioS
         ArrayList<Seguidor> AL = new ArrayList();
               
-        for(int i=0;i<50;i++){
+        for(int i=0;i<listaNomes.size();i++){
             //percorrendo a matriz pelas colunas em busca do usu solicitado
             if(matriz[i][posicao] != 0){ //se exite algum relacionamento
                  Seguidor seg = new Seguidor();
@@ -61,7 +61,7 @@ public void insereUsuario(String nome, int idade){
         ArrayList<Seguidor> AL = new ArrayList();
         Usuario usu = new Usuario();
         
-        for(int i=0;i<50;i++){
+        for(int i=0;i<listaNomes.size();i++){
             //percorrendo a matriz pelas linhas em busca do usu solicitado
             if(matriz[posicao][i] !=0){ //se exite algum relacionamento
                 Seguidor seg = new Seguidor();
@@ -91,18 +91,15 @@ public void insereUsuario(String nome, int idade){
     
     public void removeUsuario(String usuario){
         //percorre todos os usuarios removendo seus relacionamentos
-        for(String segue : listaNomes){
-            //apagando relacionamentos na matriz triangukar superior
-            if(ExisteRelacao(usuario, segue)){
-               removeRelacao(usuario, segue);          
-            }
-            //apagando relacionamentos na matriz triangukar inferior
-            if(ExisteRelacao(segue, usuario)){
-                removeRelacao(segue, usuario);
-            }
-        }
-//        removendo usuario da lista de usuarios
-        listaNomes.remove(usuario);
+        int pos = listaNomes.indexOf(usuario);
+        System.out.println(pos);
+         for(int i=0;i<50;i++){
+             matriz[pos][i] = 0;
+             matriz[i][pos] = 0;
+         }   
+        // removendo usuario da lista de usuarios
+        
+        
        
         
     }

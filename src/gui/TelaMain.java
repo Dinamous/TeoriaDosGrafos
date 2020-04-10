@@ -8,19 +8,15 @@ package gui;
 import Estruturas.Grafo;
 import Estruturas.MatrizADJ;
 import Estruturas.Seguidor;
-import Estruturas.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import static java.sql.DriverManager.println;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,7 +37,7 @@ public class TelaMain extends javax.swing.JFrame {
         
         initComponents();
         cardLayout = (CardLayout)(pnlCards.getLayout());
-         jComboBoxUsuarios.addActionListener(jComboBoxUsuarios);
+       
         //toda vez q alguem atualiza o comboBox
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
            
@@ -49,7 +45,7 @@ public class TelaMain extends javax.swing.JFrame {
                 
                 String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
                 String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
-
+                
                 //colocando o nome do usuario nos campos
                 label1.setText(segue);
                 label2.setText(segue);
@@ -59,7 +55,8 @@ public class TelaMain extends javax.swing.JFrame {
                 label6.setText(seguidor);
 
                 PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
-           atualizaCampos();
+                System.out.println("selecionado:"+jComboBoxUsuarios.getSelectedItem().toString() + "["+jComboBoxUsuarios.getSelectedIndex()+"]");
+//           atualizaCampos();
            
            
         });
@@ -1082,7 +1079,12 @@ public class TelaMain extends javax.swing.JFrame {
         //se o usuario informado existe
         if(grafo.ListaUsuarios.contains(usuario)){
             grafo.removeUsuario(usuario);
+            grafo.ListaUsuarios.remove(usuario);
+            DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+            jComboBoxUsuarios.setModel(model);
+            
             jLabel20.setText("Usuario deletado");
+            
         }else{
             jLabel20.setText("Usuario não encontrado");
         }
@@ -1168,9 +1170,14 @@ public class TelaMain extends javax.swing.JFrame {
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
 
+        int posMatriz = matriz.listaNomes.indexOf(nome);
         
-        seguidor = matriz.listarSequidores(nome,posicao);
-        segue = matriz.listarSeque(nome, posicao);
+        seguidor = matriz.listarSequidores(nome,posMatriz);
+        segue = matriz.listarSeque(nome, posMatriz);
+        
+//        for(int i=0;i<50;i++){
+//            System.out.println(matriz.matriz[posicao][i]+" ");
+//        }
       
         //Preenchendo os relacionamentos pela matriz
         DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable5.getModel();

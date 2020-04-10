@@ -58,7 +58,8 @@ public class Grafo {
     }
     
     public void removeUsuario(String usuario){
-        
+    
+        System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
         matriz.removeUsuario(usuario);
         
     }
