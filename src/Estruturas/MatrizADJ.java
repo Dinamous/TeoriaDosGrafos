@@ -89,7 +89,22 @@ public void insereUsuario(String nome, int idade){
         matriz[posUsuario][posSegue] = tempo;
     }
     
-    public void removeUsuario(){
+    public void removeUsuario(String usuario){
+        //percorre todos os usuarios removendo seus relacionamentos
+        for(String segue : listaNomes){
+            //apagando relacionamentos na matriz triangukar superior
+            if(ExisteRelacao(usuario, segue)){
+               removeRelacao(usuario, segue);          
+            }
+            //apagando relacionamentos na matriz triangukar inferior
+            if(ExisteRelacao(segue, usuario)){
+                removeRelacao(segue, usuario);
+            }
+        }
+//        removendo usuario da lista de usuarios
+        listaNomes.remove(usuario);
+       
+        
     }
     
     public void removeRelacao(String usuario,String segue){

@@ -57,7 +57,10 @@ public class Grafo {
         
     }
     
-    public void removeUsuario(){
+    public void removeUsuario(String usuario){
+        
+        matriz.removeUsuario(usuario);
+        
     }
     
     public void removeRelacao(String usuario, String segue){
@@ -75,13 +78,7 @@ public class Grafo {
         return false;
     }
     
-    
-    public boolean BuscaRelacao(String nome, String seguidor){
-        
-        
-        
-        return false;
-    }
+
     
     
     public void LerArquivo() throws FileNotFoundException, IOException{

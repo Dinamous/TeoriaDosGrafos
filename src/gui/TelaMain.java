@@ -175,9 +175,10 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        tfAddUsuarioNome1 = new javax.swing.JTextField();
+        tfDeletarUsuario = new javax.swing.JTextField();
         btnAddUsuario1 = new javax.swing.JButton();
         lblAVISO1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -919,7 +920,7 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Nome:");
 
-        tfAddUsuarioNome1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfDeletarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -929,7 +930,7 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(87, 87, 87)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDeletarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -938,7 +939,7 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDeletarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -955,6 +956,7 @@ public class TelaMain extends javax.swing.JFrame {
         });
         pnlDeletarUsuario.add(btnAddUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
         pnlDeletarUsuario.add(lblAVISO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
+        pnlDeletarUsuario.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 270, 30));
 
         pnlCards.add(pnlDeletarUsuario, "pnlDeletarUsuario");
 
@@ -1075,6 +1077,17 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
+        String usuario = tfDeletarUsuario.getText();
+        
+        //se o usuario informado existe
+        if(grafo.ListaUsuarios.contains(usuario)){
+            grafo.removeUsuario(usuario);
+            jLabel20.setText("Usuario deletado");
+        }else{
+            jLabel20.setText("Usuario não encontrado");
+        }
+        tfDeletarUsuario.setText("");
+        atualizaCampos();
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
 
     private void btnAddUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario2ActionPerformed
@@ -1088,7 +1101,7 @@ public class TelaMain extends javax.swing.JFrame {
         if(matriz.ExisteRelacao(usuario, segue)){
              grafo.removeRelacao(usuario,segue);
             
-            jLabel19.setText("Relação deletada");
+            jLabel19.setText("            Relação deletada");
         }else{
             jLabel19.setText("Relação não encontrada, verifique a grafia");
         }
@@ -1272,6 +1285,7 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1342,11 +1356,11 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JTextField tfAddRelUsuario;
     private javax.swing.JTextField tfAddUsuarioIdade;
     private javax.swing.JTextField tfAddUsuarioNome;
-    private javax.swing.JTextField tfAddUsuarioNome1;
     private javax.swing.JTextField tfAtualizaNome;
     private javax.swing.JTextField tfAtualizaSegue;
     private javax.swing.JTextField tfAtualizaTempo;
     private javax.swing.JTextField tfDeletaRsegue;
     private javax.swing.JTextField tfDeletaRusu;
+    private javax.swing.JTextField tfDeletarUsuario;
     // End of variables declaration//GEN-END:variables
 }
