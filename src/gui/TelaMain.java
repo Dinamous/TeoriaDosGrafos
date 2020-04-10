@@ -38,25 +38,14 @@ public class TelaMain extends javax.swing.JFrame {
     CardLayout cardLayout;
     public TelaMain() throws IOException {
         grafo.inicializaGrafo();
-        grafo.LerArquivo();
+        
         initComponents();
         cardLayout = (CardLayout)(pnlCards.getLayout());
          jComboBoxUsuarios.addActionListener(jComboBoxUsuarios);
         //toda vez q alguem atualiza o comboBox
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
            
-           String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
-           String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
-           
-           //colocando o nome do usuario nos campos
-           label1.setText(segue);
-           label2.setText(segue);
-           label3.setText(segue);
-           label4.setText(seguidor);
-           label5.setText(seguidor);
-           label6.setText(seguidor);
-           
-           PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
+           atualizaCampos();
            
            
         });
@@ -91,6 +80,9 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         pnlAddUsuario = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -306,8 +298,8 @@ public class TelaMain extends javax.swing.JFrame {
         pnlHome.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 22, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Simulação de uma rede social. Aplicando conhecimentos da disciplina.");
-        pnlHome.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 145, -1, -1));
+        jLabel2.setText("com usuários e relacionamentos");
+        pnlHome.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 330, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Matriz de Adjacência");
@@ -326,6 +318,25 @@ public class TelaMain extends javax.swing.JFrame {
 
         jLabel7.setText("Professor: Hugo Resende - 2020");
         pnlHome.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 503, -1, -1));
+
+        jButton9.setBackground(new java.awt.Color(153, 153, 255));
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("UTILIZAR SCRIPT DE DADOS");
+        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        pnlHome.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 184, 42));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Simulação de uma rede social. Aplicando conhecimentos da disciplina.");
+        pnlHome.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 145, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Clique no botão abaixo para preenche o programa ");
+        pnlHome.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 330, 40));
 
         pnlCards.add(pnlHome, "pnlHome");
 
@@ -987,21 +998,8 @@ public class TelaMain extends javax.swing.JFrame {
             lblAVISO.setText("Usuário cadastrado com sucesso.");
             tfAddUsuarioNome.setText("");
             tfAddUsuarioIdade.setText("");
-           //atuzalizando a lista de usuarios
-           
-           DefaultTableModel modelo = (DefaultTableModel) tblListadeUsuario.getModel();
-           modelo.setNumRows(0);
-                for (int i = 0; i < grafo.ListaUsuarios.size(); i++) {
-                 String NomeUsuario = grafo.ListaUsuarios.get(i);
-                 Vector linha = new Vector();
-                 linha.add(NomeUsuario);
-                 modelo.addRow(linha);
-        
-             }
-          
-                //Atualizando o comboBox de usuarios
-                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
-                jComboBoxUsuarios.setModel(model);
+            
+            atualizaCampos();
         }
         
     }//GEN-LAST:event_btnAddUsuarioActionPerformed
@@ -1024,6 +1022,7 @@ public class TelaMain extends javax.swing.JFrame {
             tfAddRelSeguidor.setText("");
             tfAddRelTempo.setText("");
             
+            atualizaCampos();
    
         }
         
@@ -1067,6 +1066,21 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        try {
+            // TODO add your handling code here:
+            grafo.LerArquivo();
+        } catch (IOException ex) {
+            Logger.getLogger(TelaMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Atualizando o comboBox de usuarios
+                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+                jComboBoxUsuarios.setModel(model);
+                
+                atualizaCampos();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     
     public void PreeencheTabelas(String nome, int posicao){       
@@ -1143,6 +1157,38 @@ public class TelaMain extends javax.swing.JFrame {
             }
         });
     }
+    
+   public void atualizaCampos(){
+           //atuzalizando a lista de usuarios
+           DefaultTableModel modelo = (DefaultTableModel) tblListadeUsuario.getModel();
+           modelo.setNumRows(0);
+                for (int i = 0; i < grafo.ListaUsuarios.size(); i++) {
+                 String NomeUsuario = grafo.ListaUsuarios.get(i);
+                 Vector linha = new Vector();
+                 linha.add(NomeUsuario);
+                 modelo.addRow(linha);
+        
+             }
+          
+                //Atualizando o comboBox de usuarios
+                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+                jComboBoxUsuarios.setModel(model);
+                
+                //lsitener do Combo box
+                
+                String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
+                String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
+
+                //colocando o nome do usuario nos campos
+                label1.setText(segue);
+                label2.setText(segue);
+                label3.setText(segue);
+                label4.setText(seguidor);
+                label5.setText(seguidor);
+                label6.setText(seguidor);
+
+                PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUsuario;
@@ -1158,6 +1204,7 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBoxUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1165,7 +1212,9 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
