@@ -12,9 +12,12 @@ import Estruturas.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import static java.sql.DriverManager.println;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -33,15 +36,15 @@ public class TelaMain extends javax.swing.JFrame {
      * Creates new form TelaMain
      */
     CardLayout cardLayout;
-    public TelaMain() {
+    public TelaMain() throws IOException {
         grafo.inicializaGrafo();
+        grafo.LerArquivo();
         initComponents();
         cardLayout = (CardLayout)(pnlCards.getLayout());
-         
+         jComboBoxUsuarios.addActionListener(jComboBoxUsuarios);
         //toda vez q alguem atualiza o comboBox
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
-           System.out.println(jComboBoxUsuarios.getSelectedItem());
-           System.out.println(jComboBoxUsuarios.getSelectedIndex());
+           
            String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
            String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
            
@@ -968,9 +971,9 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
-        Usuario usu = new Usuario();
-        usu.setNome(tfAddUsuarioNome.getText());
-        usu.setIdade(Integer.parseInt(tfAddUsuarioIdade.getText()));
+        
+        String nome = tfAddUsuarioNome.getText();
+        int idade = Integer.parseInt(tfAddUsuarioIdade.getText());
                 
         if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
             //se o usuario já foi cadastrado antes
@@ -980,7 +983,7 @@ public class TelaMain extends javax.swing.JFrame {
             lblAVISO.setText("Limite máximo de usuários cadastrados atingido");
                 
         }else{
-            grafo.insereUsuario(usu);
+            grafo.insereUsuario(nome,idade);
             lblAVISO.setText("Usuário cadastrado com sucesso.");
             tfAddUsuarioNome.setText("");
             tfAddUsuarioIdade.setText("");
@@ -1131,7 +1134,11 @@ public class TelaMain extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMain().setVisible(true);
+                try {
+                    new TelaMain().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });

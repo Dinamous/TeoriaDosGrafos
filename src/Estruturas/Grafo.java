@@ -5,15 +5,21 @@
  */
 package Estruturas;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
  * @author Matheus Simoes
  */
 public class Grafo {
-   public int contUsuario=50;
+   public int contUsuario=80;
    public MatrizADJ matriz = new MatrizADJ();
    public ArrayList<String> ListaUsuarios = new ArrayList();    
     
@@ -22,10 +28,10 @@ public class Grafo {
         
     }
     
-    public void insereUsuario(Usuario usuario){
+    public void insereUsuario(String nome, int idade){
         
-        ListaUsuarios.add(usuario.nome);
-        matriz.insereUsuario(usuario);
+        ListaUsuarios.add(nome);
+        matriz.insereUsuario(nome,idade);
         
 
         contUsuario--;
@@ -33,7 +39,7 @@ public class Grafo {
     }
     
     public void insereRelacao(String usuario, String seguidor, int tempo){
-        System.out.println(Arrays.toString(ListaUsuarios.toArray()));
+       
         int posUsuario = ListaUsuarios.indexOf(usuario);
         int posSeguidor = ListaUsuarios.indexOf(seguidor);
         
@@ -74,6 +80,42 @@ public class Grafo {
         return false;
     }
     
+    
+    public void LerArquivo() throws FileNotFoundException, IOException{
+         FileInputStream stream = new FileInputStream("script.txt");
+        InputStreamReader reader = new InputStreamReader(stream);
+        BufferedReader br = new BufferedReader(reader);
+        String linha = br.readLine();
+        
+        String[] temparray;
+        Random rand = new Random();
+        
+        while(linha != null) {
+           
+            for(int i=0;i<50;i++){
+                temparray = linha.split(" ");
+                insereUsuario(temparray[0],Integer.parseInt(temparray[1]));
+                linha = br.readLine();
+            }
+            
+            linha = br.readLine();
+            
+            for(int i=0;i<50;i++){
+                
+                temparray = linha.split(" ");
+                
+                for(int j=1;j<temparray.length;j++){
+                    String nome = ListaUsuarios.get(Integer.parseInt(temparray[j]));
+                    insereRelacao(temparray[0],nome,rand.nextInt(25));
+                    
+//                    System.out.println("nome:"+temparray[0] +" seg:"+nome);
+                }
+                linha = br.readLine();
+            }
+                
+    
+        }
+    }
    
   
     

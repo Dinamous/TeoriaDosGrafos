@@ -22,22 +22,20 @@ public void inicializaMatriz(){
     //System.out.println(Arrays.deepToString(matriz));
 }
 
-public void insereUsuario(Usuario usuario){
+public void insereUsuario(String nome, int idade){
     
-    listaNomes.add(usuario.nome);
-    System.out.println(Arrays.deepToString(matriz));
-    System.out.println(Arrays.toString(listaNomes.toArray()));
+    listaNomes.add(nome);
+    
     //System.out.println(Arrays.deepToString(matriz));
     }
     
     public void insereRelacao(int posUsuario,int posSeguidor, int tempo){
         matriz[posUsuario][posSeguidor] = tempo;
-        System.out.println("x =" + posUsuario + "   y=" + posSeguidor + " t=" + matriz[posUsuario][posSeguidor]);
-        System.out.println(Arrays.deepToString(matriz));
+        
+        
     }
     
-    public ArrayList<Seguidor> listarSequidores(String nome, int posicao){//lista seguidores de um usuario
-        System.out.println(Arrays.deepToString(matriz));
+    public ArrayList<Seguidor> listarSequidores(String nome, int posicao){//lista seguidores de um usuarioS
         ArrayList<Seguidor> AL = new ArrayList();
               
         for(int i=0;i<50;i++){

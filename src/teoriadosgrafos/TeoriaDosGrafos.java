@@ -9,6 +9,7 @@ import Estruturas.Grafo;
 import gui.TelaMain;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -21,7 +22,7 @@ public class TeoriaDosGrafos {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         TelaMain TP = new TelaMain();
         Grafo grafo = new Grafo();
        
