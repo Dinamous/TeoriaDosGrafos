@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class Grafo {
    public int contUsuario=50;
-   MatrizADJ matriz = new MatrizADJ();
+   public MatrizADJ matriz = new MatrizADJ();
    public ArrayList<String> ListaUsuarios = new ArrayList();    
     
     public void inicializaGrafo(){

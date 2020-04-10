@@ -1067,20 +1067,24 @@ public class TelaMain extends javax.swing.JFrame {
 
     
     public void PreeencheTabelas(String nome, int posicao){       
-        ArrayList<Seguidor> segue, seguidor = new ArrayList();       
+        ArrayList<Seguidor> segue, seguidor = new ArrayList();     
+        
+        //ATENÇÃO = atualizando a matriz atual com a matriz do grafo
+        matriz.matriz = grafo.matriz.matriz;
+        matriz.listaNomes = grafo.matriz.listaNomes;
+
         
         seguidor = matriz.listarSequidores(nome,posicao);
         segue = matriz.listarSeque(nome, posicao);
-        
-        
+      
         //Preenchendo os relacionamentos pela matriz
-        DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable11.getModel();
-        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable12.getModel();
+        DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable5.getModel();
+        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable6.getModel();
         
         modelomatriz1.setNumRows(0);
         modelomatriz2.setNumRows(0);
         
-        for(Seguidor x :segue){
+        for(Seguidor x :seguidor){
             Vector linha = new Vector();
             linha.add(x.nome);
             linha.add(x.tempo);
