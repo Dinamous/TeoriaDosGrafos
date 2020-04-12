@@ -5,6 +5,8 @@
  */
 package Estruturas;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Matheus Simoes
@@ -12,6 +14,7 @@ package Estruturas;
 public class Usuario {
     public String nome;
     public int idade;
+    public ArrayList<Seguidor> listaSeguidor = new ArrayList();
 
     public String getNome() {
         return nome;

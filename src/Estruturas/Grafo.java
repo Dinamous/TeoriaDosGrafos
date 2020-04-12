@@ -5,6 +5,7 @@
  */
 package Estruturas;
 
+import Estruturas.Lista.ListaADJ;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class Grafo {
    public int contUsuario=80;
    public MatrizADJ matriz = new MatrizADJ();
+   public ListaADJ lista = new ListaADJ();
    public ArrayList<String> ListaUsuarios = new ArrayList();    
     
     public void inicializaGrafo(){
@@ -32,7 +34,7 @@ public class Grafo {
         
         ListaUsuarios.add(nome);
         matriz.insereUsuario(nome,idade);
-        
+        lista.insereUsuario(nome, idade);
 
         contUsuario--;
         
@@ -44,6 +46,7 @@ public class Grafo {
         int posSeguidor = ListaUsuarios.indexOf(seguidor);
         
         matriz.insereRelacao(posUsuario,posSeguidor,tempo);
+        lista.insereRelacao(posUsuario,usuario, seguidor, tempo);
     }
     
       
@@ -79,10 +82,7 @@ public class Grafo {
         
         return false;
     }
-    
 
-    
-    
     public void LerArquivo() throws FileNotFoundException, IOException{
          FileInputStream stream = new FileInputStream("script.txt");
         InputStreamReader reader = new InputStreamReader(stream);
