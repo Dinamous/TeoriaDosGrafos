@@ -65,14 +65,14 @@ public class Grafo {
     
     public void removeUsuario(String usuario){
     
-        System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
+       // 
         matriz.removeUsuario(usuario);
         
     }
     
     public void removeRelacao(String usuario, String segue){
         matriz.removeRelacao(usuario,segue);
-        
+        lista.removeRelacao(usuario, segue);
     }
     
     public boolean VerificaUsuarioJaInserido(String nome){
@@ -112,7 +112,7 @@ public class Grafo {
                     String nome = ListaUsuarios.get(Integer.parseInt(temparray[j]));
                     insereRelacao(temparray[0],nome,rand.nextInt(25)+1);
                     
-//                    System.out.println("nome:"+temparray[0] +" seg:"+nome);
+//                   
                 }
                 linha = br.readLine();
             }

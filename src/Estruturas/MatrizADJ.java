@@ -19,7 +19,7 @@ public void inicializaMatriz(){
             
         }
     }   
-    //System.out.println(Arrays.deepToString(matriz));
+    
 }
 
 public void insereUsuario(String nome, int idade){
@@ -29,7 +29,7 @@ public void insereUsuario(String nome, int idade){
     usu.idade = idade;
     ListaUsuarios.add(usu);
     
-    //System.out.println(Arrays.deepToString(matriz));
+    
     }
     
     public void insereRelacao(int posUsuario,int posSeguidor, int tempo){
@@ -123,7 +123,6 @@ public void insereUsuario(String nome, int idade){
              matriz[i][pos] = 0;
          }   
         // removendo usuario da lista de usuarios
-        System.out.println("usuario lista"+ListaUsuarios.get(pos).nome);
         ListaUsuarios.remove(pos);
         
         

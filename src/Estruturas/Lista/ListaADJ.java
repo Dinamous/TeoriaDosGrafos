@@ -50,7 +50,7 @@ public class ListaADJ {
                     seq.nome = usu.nome;
                     seq.tempo = segue.tempo;
                     AL.add(seq);
-                    System.out.println(nome);
+                   
                 }
             }
         }
@@ -62,7 +62,7 @@ public class ListaADJ {
         int posUsuario = listaNomes.indexOf(nome); 
   
         for (Seguidor seg : listaUsuarios.get(posUsuario).listaSeguidor) {
-            System.out.println(seg.nome);
+           
         }
         return listaUsuarios.get(posUsuario).listaSeguidor;
     }
@@ -77,9 +77,18 @@ public class ListaADJ {
     
     public void atualizarRelacao(String usuario,String segue,int tempo){
         int posUsuario = listaNomes.indexOf(usuario);
-        int posSegue = listaNomes.indexOf(segue);
+        int posSegue = listaUsuarios.get(posUsuario).listaSeguidor.indexOf(segue);
         
-        listaUsuarios.get(posUsuario).listaSeguidor.get(posSegue).tempo = tempo;
+        for(Usuario usu: listaUsuarios){
+            if(usu.nome.equals(usuario)){//se existir esse usuario
+                for(Seguidor seg :usu.listaSeguidor){
+                if(seg.nome.equals(segue)){//se existir este seguidor
+                    seg.tempo =tempo;
+                }
+            }
+            }
+        }
+        
     }
     
     public void removeUsuario(String usuario){
@@ -95,12 +104,29 @@ public class ListaADJ {
 //        listaUsuarios.remove(posUsuario);
     }
     
-    public void removeRelacao(String usuario,String segue){
-        int posUsuario = listaNomes.indexOf(usuario);
-        int posSegue = listaNomes.indexOf(segue);
-        
-        listaUsuarios.get(posUsuario).listaSeguidor.remove(posSegue);
-        
+    public void removeRelacao(String usuario,String seguidor){
+        int cont=0;
+       for(Usuario usu : listaUsuarios){
+           if(usu.nome.equals(usuario)){
+               System.out.println("Usuario:"+usu.nome);
+               for(Seguidor seg : usu.listaSeguidor){
+                   cont++;
+                   System.out.println("\t segue:"+seg.nome);
+                   if(seg.nome.equals(seguidor)){
+                       System.out.println("encontrou");
+                       break;
+                   }
+               }
+               System.out.println("posição:"+cont);
+               usu.listaSeguidor.remove(cont-1);
+               System.out.println("=======");
+               for(Seguidor seg :usu.listaSeguidor){
+                   System.out.println("\t segue:"+seg.nome);
+                   
+               }
+           }
+       }
+     
     }
     
    
