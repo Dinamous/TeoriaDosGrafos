@@ -23,7 +23,9 @@ public class Grafo {
    public int contUsuario=80;
    public MatrizADJ matriz = new MatrizADJ();
    public ListaADJ lista = new ListaADJ();
-   public ArrayList<String> ListaUsuarios = new ArrayList();    
+   public ArrayList<String> ListaUsuarios = new ArrayList();   
+   
+   //Obs a função listar seguidor está na TelaMain.java função preencheTabelas()
     
     public void inicializaGrafo(){
         matriz.inicializaMatriz();
@@ -57,7 +59,7 @@ public class Grafo {
     
     public void atualizarRelacao(String usuario,String segue,int tempo){
         matriz.atualizarRelacao(usuario,segue,tempo);
-        
+        lista.atualizarRelacao(usuario, segue, tempo);
         
     }
     
@@ -108,7 +110,7 @@ public class Grafo {
                 
                 for(int j=1;j<temparray.length;j++){
                     String nome = ListaUsuarios.get(Integer.parseInt(temparray[j]));
-                    insereRelacao(temparray[0],nome,rand.nextInt(25));
+                    insereRelacao(temparray[0],nome,rand.nextInt(25)+1);
                     
 //                    System.out.println("nome:"+temparray[0] +" seg:"+nome);
                 }

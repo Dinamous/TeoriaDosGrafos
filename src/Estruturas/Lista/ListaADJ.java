@@ -8,6 +8,7 @@ package Estruturas.Lista;
 import Estruturas.Seguidor;
 import Estruturas.Usuario;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -34,21 +35,36 @@ public class ListaADJ {
         seg.tempo = tempo;
         
         listaUsuarios.get(posUsuario).listaSeguidor.add(seg);
-        System.out.println(seguidor);
+        
         
     }
     
     public ArrayList<Seguidor> listarSequidores(String nome, int posicao){//lista seguidores de um usuarioS
         ArrayList<Seguidor> AL = new ArrayList();
         
+        for(Usuario usu:listaUsuarios){
+            for(Seguidor segue : usu.listaSeguidor){
+               
+                if(segue.nome.equals(nome)){
+                    Seguidor seq = new Seguidor();
+                    seq.nome = usu.nome;
+                    seq.tempo = segue.tempo;
+                    AL.add(seq);
+                    System.out.println(nome);
+                }
+            }
+        }
+        
         return AL;
     }
     
-    public ArrayList<Seguidor> listarSeque(String nome, int posicao){//lista pessoas que um usuario segue
-        ArrayList<Seguidor> AL = new ArrayList();
-       
-        
-        return AL;
+    public ArrayList<Seguidor> listarSeque(String nome){//lista pessoas que um usuario segue
+        int posUsuario = listaNomes.indexOf(nome); 
+  
+        for (Seguidor seg : listaUsuarios.get(posUsuario).listaSeguidor) {
+            System.out.println(seg.nome);
+        }
+        return listaUsuarios.get(posUsuario).listaSeguidor;
     }
     
     
@@ -60,20 +76,33 @@ public class ListaADJ {
     }
     
     public void atualizarRelacao(String usuario,String segue,int tempo){
+        int posUsuario = listaNomes.indexOf(usuario);
+        int posSegue = listaNomes.indexOf(segue);
         
+        listaUsuarios.get(posUsuario).listaSeguidor.get(posSegue).tempo = tempo;
     }
     
     public void removeUsuario(String usuario){
-        
+//        int posUsuario = listaNomes.indexOf(usuario);
+//        
+//        //percorrendo todos os usuarios para escluir pessoas que seguem este usuario
+//        for(Usuario usu :listaUsuarios){
+//            if(usu.listaSeguidor.contains(usu)){
+//                
+//            }
+//        }
+//        
+//        listaUsuarios.remove(posUsuario);
     }
     
     public void removeRelacao(String usuario,String segue){
-       
+        int posUsuario = listaNomes.indexOf(usuario);
+        int posSegue = listaNomes.indexOf(segue);
+        
+        listaUsuarios.get(posUsuario).listaSeguidor.remove(posSegue);
+        
     }
     
-    public boolean ExisteRelacao(String usuario,String segue){
-      
-        return false;
-    }
+   
     
 }

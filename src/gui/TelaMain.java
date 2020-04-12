@@ -1113,7 +1113,7 @@ public class TelaMain extends javax.swing.JFrame {
         if(matriz.ExisteRelacao(usuario, segue)){
              grafo.removeRelacao(usuario,segue);
             
-            jLabel19.setText("            Relação deletada");
+            jLabel19.setText(" Relação deletada");
         }else{
             jLabel19.setText("Relação não encontrada, verifique a grafia");
         }
@@ -1208,7 +1208,32 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
-         
+        
+   //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        seguidor = grafo.lista.listarSequidores(nome,posMatriz);
+        segue = grafo.lista.listarSeque(nome);
+        
+        
+        DefaultTableModel modelomatriz3 = (DefaultTableModel)jTable9.getModel();
+        DefaultTableModel modelomatriz4 = (DefaultTableModel)jTable10.getModel();
+        
+        modelomatriz3.setNumRows(0);
+        modelomatriz4.setNumRows(0);
+        
+        for(Seguidor x :seguidor){
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz3.addRow(linha);
+        }
+        for(Seguidor y :segue){
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz4.addRow(linha);
+        }
+        
+        
     }
     
 
