@@ -48,6 +48,7 @@ public class Grafo {
     
       
     public void listarSeguidoresVelhos(){
+        matriz.listarSeguidoresVelhos();
         
     }
     

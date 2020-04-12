@@ -8,6 +8,7 @@ package gui;
 import Estruturas.Grafo;
 import Estruturas.MatrizADJ;
 import Estruturas.Seguidor;
+import Estruturas.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class TelaMain extends javax.swing.JFrame {
                 label6.setText(seguidor);
 
                 PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
-                System.out.println("selecionado:"+jComboBoxUsuarios.getSelectedItem().toString() + "["+jComboBoxUsuarios.getSelectedIndex()+"]");
+                
 //           atualizaCampos();
            
            
@@ -739,7 +740,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setText("Lista de Seguidores Mais Velhos");
-        pnlListaUsuarios.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 20, -1, -1));
+        pnlListaUsuarios.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
         tblListadeUsuario2.setBackground(new java.awt.Color(153, 153, 255));
         tblListadeUsuario2.setForeground(new java.awt.Color(255, 255, 255));
@@ -751,12 +752,20 @@ public class TelaMain extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Usuário", "Tempo"
+                "Usuário", "Idade"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(tblListadeUsuario2);
 
-        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 105, 409, 336));
+        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 400, 336));
 
         pnlCards.add(pnlListaUsuarios, "pnlListaUsuarios");
 
@@ -1049,7 +1058,8 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-         cardLayout.show(pnlCards, "pnlListaUsuarios");
+        cardLayout.show(pnlCards, "pnlListaUsuarios");
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jComboBoxUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUsuariosActionPerformed
@@ -1198,7 +1208,7 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
-        
+         
     }
     
 
@@ -1260,7 +1270,30 @@ public class TelaMain extends javax.swing.JFrame {
                 jComboBoxUsuarios.setModel(model);
                 jComboBoxUsuarios.setSelectedIndex(0);
                 
+                //verifica se existe seguidores velhos
                 
+                    PreencheSeguidoresVelhos();
+                
+                             
+   }
+   
+   public void PreencheSeguidoresVelhos(){
+       System.out.println("atualizou");
+       matriz.matriz = grafo.matriz.matriz;
+       matriz.listaNomes = grafo.matriz.listaNomes;
+       matriz.ListaUsuarios = grafo.matriz.ListaUsuarios;
+       
+       DefaultTableModel modelo2 = (DefaultTableModel) tblListadeUsuario2.getModel();
+       modelo2.setNumRows(0);
+       ArrayList<Usuario> nomeIdade = new ArrayList();
+       nomeIdade = matriz.listarSeguidoresVelhos();
+        for (Usuario usu : nomeIdade) {
+            Vector linha = new Vector();
+            linha.add(usu.nome);
+            linha.add(usu.idade);
+            modelo2.addRow(linha);
+
+     }
                 
    }
 

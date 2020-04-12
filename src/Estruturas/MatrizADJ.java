@@ -9,7 +9,7 @@ public class MatrizADJ {
   public int[][] matriz = new int[50][50];
   public ArrayList<Usuario> ListaUsuarios = new ArrayList();
   public ArrayList<String> listaNomes = new ArrayList();
-  
+ 
   
 public void inicializaMatriz(){
         
@@ -78,8 +78,33 @@ public void insereUsuario(String nome, int idade){
     
     
     
-    public void listarSeguidoresVelhos(){
+    public ArrayList<Usuario> listarSeguidoresVelhos(){
+        ArrayList<Seguidor> AL = new ArrayList();
+        Usuario usuario = new Usuario();
+        Usuario seguidor = new Usuario();
+        boolean velho = false;
+         ArrayList<Usuario> ListaDeSeguidoresVelhos = new ArrayList();
         
+        for(Usuario usu:ListaUsuarios){
+            velho=false;
+            for(Usuario seg: ListaUsuarios){
+                if(ExisteRelacao(seg.nome, usu.nome)){
+                    if(usu.idade<seg.idade){
+                        ListaDeSeguidoresVelhos.add(usu);
+                        System.out.println("nome velho:"+usu.nome);
+                        velho=true;
+                    }
+                }
+                if(velho){
+                    break;
+                }
+            }
+            
+        }
+        
+       
+        
+        return ListaDeSeguidoresVelhos;
     }
     
     public void atualizarRelacao(String usuario,String segue,int tempo){
@@ -92,12 +117,14 @@ public void insereUsuario(String nome, int idade){
     public void removeUsuario(String usuario){
         //percorre todos os usuarios removendo seus relacionamentos
         int pos = listaNomes.indexOf(usuario);
-        System.out.println(pos);
+       
          for(int i=0;i<50;i++){
              matriz[pos][i] = 0;
              matriz[i][pos] = 0;
          }   
         // removendo usuario da lista de usuarios
+        System.out.println("usuario lista"+ListaUsuarios.get(pos).nome);
+        ListaUsuarios.remove(pos);
         
         
        
