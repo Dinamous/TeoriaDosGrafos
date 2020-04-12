@@ -92,38 +92,43 @@ public class ListaADJ {
     }
     
     public void removeUsuario(String usuario){
-//        int posUsuario = listaNomes.indexOf(usuario);
-//        
-//        //percorrendo todos os usuarios para escluir pessoas que seguem este usuario
-//        for(Usuario usu :listaUsuarios){
-//            if(usu.listaSeguidor.contains(usu)){
-//                
-//            }
-//        }
-//        
-//        listaUsuarios.remove(posUsuario);
-    }
-    
-    public void removeRelacao(String usuario,String seguidor){
-        int cont=0;
+       
+      
        for(Usuario usu : listaUsuarios){
-           if(usu.nome.equals(usuario)){
-               System.out.println("Usuario:"+usu.nome);
+            int cont=0;
+               
                for(Seguidor seg : usu.listaSeguidor){
                    cont++;
-                   System.out.println("\t segue:"+seg.nome);
-                   if(seg.nome.equals(seguidor)){
-                       System.out.println("encontrou");
+                   
+                   if(seg.nome.equals(usuario)){
+                      
                        break;
                    }
                }
-               System.out.println("posição:"+cont);
                usu.listaSeguidor.remove(cont-1);
-               System.out.println("=======");
-               for(Seguidor seg :usu.listaSeguidor){
-                   System.out.println("\t segue:"+seg.nome);
+       
+       }
+       int pos = listaNomes.indexOf(usuario);
+       listaUsuarios.remove(pos);
+       listaNomes.remove(pos);
+    }
+    
+    public void removeRelacao(String usuario,String seguidor){
+       int cont=0;
+       for(Usuario usu : listaUsuarios){
+           if(usu.nome.equals(usuario)){
+               
+               for(Seguidor seg : usu.listaSeguidor){
+                   cont++;
                    
+                   if(seg.nome.equals(seguidor)){
+                      
+                       break;
+                   }
                }
+              
+               usu.listaSeguidor.remove(cont-1);
+    
            }
        }
      

@@ -67,7 +67,7 @@ public class Grafo {
     
        // 
         matriz.removeUsuario(usuario);
-        
+        lista.removeUsuario(usuario);
     }
     
     public void removeRelacao(String usuario, String segue){
