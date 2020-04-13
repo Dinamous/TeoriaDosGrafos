@@ -5,7 +5,10 @@
  */
 package Estruturas;
 
+
 import Estruturas.Lista.ListaADJ;
+import Estruturas.AVL.AVL;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +24,7 @@ import java.util.Random;
  */
 public class Grafo {
 
+
     public int contUsuario = 80;
     public MatrizADJ matriz = new MatrizADJ();
     public ListaADJ lista = new ListaADJ();
@@ -28,6 +32,7 @@ public class Grafo {
 
     //Obs a função listar seguidor está na TelaMain.java função preencheTabelas()
     public void inicializaGrafo() {
+
         matriz.inicializaMatriz();
         
     }
@@ -35,9 +40,11 @@ public class Grafo {
     public void insereUsuario(String nome, int idade) {
         
         ListaUsuarios.add(nome);
-        matriz.insereUsuario(nome, idade);
+
+        matriz.insereUsuario(nome,idade);
+        avl.insereUsuario(nome, idade);
         lista.insereUsuario(nome, idade);
-        
+
         contUsuario--;
         
     }
@@ -47,8 +54,11 @@ public class Grafo {
         int posUsuario = ListaUsuarios.indexOf(usuario);
         int posSeguidor = ListaUsuarios.indexOf(seguidor);
         
-        matriz.insereRelacao(posUsuario, posSeguidor, tempo);
+
+        matriz.insereRelacao(posUsuario,posSeguidor,tempo);
+        avl.insereRelacao(usuario, seguidor, tempo);
         lista.insereRelacao(posUsuario, usuario, seguidor, tempo);
+
     }
     
     public void listarSeguidoresVelhos() {
@@ -56,22 +66,28 @@ public class Grafo {
         
     }
     
-    public void atualizarRelacao(String usuario, String segue, int tempo) {
-        matriz.atualizarRelacao(usuario, segue, tempo);
-        lista.atualizarRelacao(usuario, segue, tempo);
-        
-    }
-    
-    public void removeUsuario(String usuario) {
 
-        // 
-        matriz.removeUsuario(usuario);
-        lista.removeUsuario(usuario);
+    public void atualizarRelacao(String usuario,String segue,int tempo){
+        matriz.atualizarRelacao(usuario,segue,tempo);
+        avl.atualizarRelacao(usuario, segue, tempo);
+        lista.atualizarRelacao(usuario, segue, tempo);
     }
     
-    public void removeRelacao(String usuario, String segue) {
-        matriz.removeRelacao(usuario, segue);
+    public void removeUsuario(String usuario){    
+        System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
+        matriz.removeUsuario(usuario);
+        avl.removeUsuario(usuario);
+        lista.removeUsuario(usuario);
+
+    }
+   
+    
+
+    public void removeRelacao(String usuario, String segue){
+        matriz.removeRelacao(usuario,segue);
+        avl.removeRelacao(usuario, segue);
         lista.removeRelacao(usuario, segue);
+
     }
     
     public boolean VerificaUsuarioJaInserido(String nome) {

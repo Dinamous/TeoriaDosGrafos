@@ -1119,6 +1119,7 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
 
+
         if (tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()) {
             lblAVISO.setText("Por favor, preencha todos os campos");
         } else {
@@ -1145,11 +1146,11 @@ public class TelaMain extends javax.swing.JFrame {
 
         }
 
-
     }//GEN-LAST:event_btnAddUsuarioActionPerformed
 
     private void btnCadastrarRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacaoActionPerformed
         // TODO fazer verificação se relação já existe
+
 
         if (tfAddRelUsuario.getText().isEmpty() || tfAddRelSeguidor.getText().isEmpty() || tfAddRelTempo.getText().isEmpty()) {
             lblAvisoRelacionamento.setText("Por favor, preencha todos os campos");
@@ -1212,6 +1213,7 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
 
+
         if (tfDeletarUsuario.getText().isEmpty()) {
             jLabel20.setText("Por favor, preencha o campo");
         } else {
@@ -1234,6 +1236,7 @@ public class TelaMain extends javax.swing.JFrame {
             }
 
         }
+
 
 
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
@@ -1264,12 +1267,14 @@ public class TelaMain extends javax.swing.JFrame {
         }
 
 
+
     }//GEN-LAST:event_btnAddUsuario2ActionPerformed
 
     private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
         // Atualizando dados entre as classes
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
+
 
         if (tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() || tfAtualizaTempo.getText().isEmpty()) {
             jLabel18.setText("Por favor, preencha todos os campos");
@@ -1329,8 +1334,12 @@ public class TelaMain extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "50 usuários foram inseridos \n Cerca de 200 relacionamentos foram inseridos.");
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    public void PreeencheTabelas(String nome, int posicao) {
-        ArrayList<Seguidor> segue, seguidor = new ArrayList();
+
+    
+    public void PreeencheTabelas(String nome, int posicao){       
+        ArrayList<Seguidor> segue, seguidor = new ArrayList();     
+        ArrayList<Usuario> seguidor2 = new ArrayList();    
+        
 
         //ATENÇÃO = atualizando a matriz atual com a matriz do grafo
         matriz.matriz = grafo.matriz.matriz;
@@ -1338,8 +1347,11 @@ public class TelaMain extends javax.swing.JFrame {
 
         int posMatriz = matriz.listaNomes.indexOf(nome);
 
+
         seguidor = matriz.listarSequidores(nome, posMatriz);
         segue = matriz.listarSeque(nome, posMatriz);
+
+
 
         //Preenchendo os relacionamentos pela matriz
         DefaultTableModel modelomatriz1 = (DefaultTableModel) jTable5.getModel();
@@ -1360,6 +1372,7 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
+
 
         //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
         seguidor = grafo.lista.listarSequidores(nome, posMatriz);
@@ -1383,6 +1396,35 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz4.addRow(linha);
         }
+
+        
+
+//==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        seguidor2 = grafo.avl.listarSequidores(nome,posMatriz);
+        segue = grafo.avl.listarSeque(nome, posicao);
+        
+        
+        DefaultTableModel modelomatriz5 = (DefaultTableModel)jTable11.getModel();
+        DefaultTableModel modelomatriz6 = (DefaultTableModel)jTable12.getModel();
+        
+        modelomatriz5.setNumRows(0);
+        modelomatriz6.setNumRows(0);
+        
+        for(Seguidor x :seguidor){
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz5.addRow(linha);
+        }
+        for(Seguidor y :segue){
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz6.addRow(linha);
+        }
+        
+        
+
 
     }
 
