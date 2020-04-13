@@ -91,7 +91,7 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
+        btnUtilizaScripts = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         pnlAddUsuario = new javax.swing.JPanel();
@@ -341,16 +341,16 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel7.setText("Professor: Hugo Resende - 2020");
         pnlHome.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 503, -1, -1));
 
-        jButton9.setBackground(new java.awt.Color(153, 153, 255));
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("UTILIZAR SCRIPT DE DADOS");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnUtilizaScripts.setBackground(new java.awt.Color(153, 153, 255));
+        btnUtilizaScripts.setForeground(new java.awt.Color(255, 255, 255));
+        btnUtilizaScripts.setText("UTILIZAR SCRIPT DE DADOS");
+        btnUtilizaScripts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnUtilizaScripts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnUtilizaScriptsActionPerformed(evt);
             }
         });
-        pnlHome.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 184, 42));
+        pnlHome.add(btnUtilizaScripts, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 184, 42));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Simulação de uma rede social. Aplicando conhecimentos da disciplina.");
@@ -1317,7 +1317,7 @@ public class TelaMain extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnUtilizaScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtilizaScriptsActionPerformed
         try {
             // TODO add your handling code here:
             grafo.LerArquivo();
@@ -1332,7 +1332,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         atualizaCampos();
         JOptionPane.showMessageDialog(rootPane, "50 usuários foram inseridos \n Cerca de 200 relacionamentos foram inseridos.");
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnUtilizaScriptsActionPerformed
 
 
     
@@ -1521,11 +1521,27 @@ public class TelaMain extends javax.swing.JFrame {
         nomeIdade2 = grafo.lista.listarSeguidoresVelhos();
         
         
-        for (Usuario usu : nomeIdade) {
+        for (Usuario usu : nomeIdade2) {
+           
             Vector linha = new Vector();
             linha.add(usu.nome);
             linha.add(usu.idade);
             tbl2.addRow(linha);
+
+        }
+        
+        //============ AVL ========================
+        DefaultTableModel tbl3 = (DefaultTableModel) tblListadeUsuario4.getModel();
+        tbl3.setNumRows(0);
+        ArrayList<Usuario> nomeIdade3 = new ArrayList();
+        nomeIdade3 = grafo.avl.listarSeguidoresVelhos();
+        
+        
+        for (Usuario usu : nomeIdade3) {
+            Vector linha = new Vector();
+            linha.add(usu.nome);
+            linha.add(usu.idade);
+            tbl3.addRow(linha);
 
         }
     }
@@ -1546,6 +1562,7 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JButton btnAddUsuario2;
     private javax.swing.JButton btnCadastrarRelacao;
     private javax.swing.JButton btnCadastrarRelacao1;
+    private javax.swing.JButton btnUtilizaScripts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1554,7 +1571,6 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBoxUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

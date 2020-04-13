@@ -81,9 +81,13 @@ public class AVL {
                     if (s.nome.equals(x.nome)) {
                         if (u.idade < x.idade) {
                             AL.add(u);
+                            velho = true;
                         }
+                        
                     }
+                    if(velho)break;
                 }
+                if(velho)break;
             }
         }
         return AL;

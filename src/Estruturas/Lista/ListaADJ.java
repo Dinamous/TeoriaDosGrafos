@@ -81,6 +81,7 @@ public class ListaADJ {
                         if(usu.idade<u.idade){
                             
                             AL.add(usu);
+//                            System.out.println("ususario "+usu.nome);
                             velho = true;
                         }
                     }
