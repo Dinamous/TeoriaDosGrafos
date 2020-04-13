@@ -567,7 +567,7 @@ public class TelaMain extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label4)
@@ -1397,9 +1397,7 @@ public class TelaMain extends javax.swing.JFrame {
             modelomatriz4.addRow(linha);
         }
 
-        
-
-//==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
         seguidor2 = grafo.avl.listarSequidores(nome,posMatriz);
         segue = grafo.avl.listarSeque(nome, posicao);
         
@@ -1427,6 +1425,7 @@ public class TelaMain extends javax.swing.JFrame {
 
 
     }
+    
 
     /**
      * @param args the command line arguments
