@@ -65,11 +65,14 @@ public class Grafo {
         System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
         matriz.removeUsuario(usuario);
         avl.removeUsuario(usuario);
+    
     }
+   
     
     public void removeRelacao(String usuario, String segue){
         matriz.removeRelacao(usuario,segue);
         avl.removeRelacao(usuario, segue);
+
     }
     
     public boolean VerificaUsuarioJaInserido(String nome){

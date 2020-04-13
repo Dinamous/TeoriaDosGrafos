@@ -91,7 +91,7 @@ public void insereUsuario(String nome, int idade){
                 if(ExisteRelacao(seg.nome, usu.nome)){
                     if(usu.idade<seg.idade){
                         ListaDeSeguidoresVelhos.add(usu);
-                        //System.out.println("nome velho:"+usu.nome);
+
                         velho=true;
                     }
                 }
