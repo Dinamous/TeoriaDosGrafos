@@ -28,9 +28,12 @@ public class Grafo {
     public int contUsuario = 80;
     public MatrizADJ matriz = new MatrizADJ();
     public ListaADJ lista = new ListaADJ();
+    public AVL avl = new AVL();
     public ArrayList<String> ListaUsuarios = new ArrayList();
 
     //Obs a função listar seguidor está na TelaMain.java função preencheTabelas()
+    //Lista de Seguidores Velhos também
+    
     public void inicializaGrafo() {
 
         matriz.inicializaMatriz();
@@ -74,7 +77,7 @@ public class Grafo {
     }
     
     public void removeUsuario(String usuario){    
-        System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
+        
         matriz.removeUsuario(usuario);
         avl.removeUsuario(usuario);
         lista.removeUsuario(usuario);

@@ -27,14 +27,14 @@ public class AVL {
 
     public void insereRelacao(String usuario, String seguidor, int tempo) {
         int pos = ListaNomes.indexOf(usuario);
-        System.out.println("pos: " + pos);
+       
 
         Seguidor seg = new Seguidor();
         seg.nome = seguidor;
         seg.tempo = tempo;
 
         boolean add = ListaUsuarios.get(pos).seguidores.add(seg);
-        System.out.println(add);
+       
 
     }
 
@@ -97,7 +97,7 @@ public class AVL {
                 for (Seguidor s : u.seguidores) {
                     if (s.nome.equals(segue)) {
                         s.tempo = tempo;
-                        System.out.println(s.tempo);
+                       
                     }
                 }
             }
