@@ -5,8 +5,11 @@
  */
 package Estruturas;
 
+
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -16,7 +19,10 @@ public class Usuario {
     public int id;
     public String nome;
     public int idade;
+
     public Set<Seguidor> seguidores = new TreeSet<Seguidor>();
+    public ArrayList<Seguidor> listaSeguidor = new ArrayList();
+
 
     public String getNome() {
         return nome;

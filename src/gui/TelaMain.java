@@ -17,6 +17,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,40 +29,38 @@ public class TelaMain extends javax.swing.JFrame {
 
     Grafo grafo = new Grafo();
     MatrizADJ matriz = new MatrizADJ();
-    
+
     /**
      * Creates new form TelaMain
      */
     CardLayout cardLayout;
+
     public TelaMain() throws IOException {
         grafo.inicializaGrafo();
-        
-        initComponents();
-        cardLayout = (CardLayout)(pnlCards.getLayout());
-       
-        //toda vez q alguem atualiza o comboBox
-       jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
-           
-           //lsitener do Combo box
-                
-                String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
-                String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
-                
-                //colocando o nome do usuario nos campos
-                label1.setText(segue);
-                label2.setText(segue);
-                label3.setText(segue);
-                label4.setText(seguidor);
-                label5.setText(seguidor);
-                label6.setText(seguidor);
 
-                PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
-                
+        initComponents();
+        cardLayout = (CardLayout) (pnlCards.getLayout());
+
+        //toda vez q alguem atualiza o comboBox
+        jComboBoxUsuarios.addActionListener((ActionEvent e) -> {
+
+            //lsitener do Combo box
+            String segue = "Seguidores de " + jComboBoxUsuarios.getSelectedItem() + ":";
+            String seguidor = "Usuários que " + jComboBoxUsuarios.getSelectedItem() + " segue:";
+
+            //colocando o nome do usuario nos campos
+            label1.setText(segue);
+            label2.setText(segue);
+            label3.setText(segue);
+            label4.setText(seguidor);
+            label5.setText(seguidor);
+            label6.setText(seguidor);
+
+            PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(), jComboBoxUsuarios.getSelectedIndex());
+
 //           atualizaCampos();
-           
-           
         });
-   
+
     }
 
     /**
@@ -145,8 +144,16 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         pnlListaUsuarios = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblListadeUsuario2 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblListadeUsuario3 = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tblListadeUsuario4 = new javax.swing.JTable();
         pnlAtualizarRelacionamento = new javax.swing.JPanel();
         btnCadastrarRelacao1 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
@@ -765,7 +772,110 @@ public class TelaMain extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblListadeUsuario2);
 
-        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 400, 336));
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Matriz", jPanel9);
+
+        tblListadeUsuario3.setBackground(new java.awt.Color(153, 153, 255));
+        tblListadeUsuario3.setForeground(new java.awt.Color(255, 255, 255));
+        tblListadeUsuario3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Usuário", "Idade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblListadeUsuario3);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Lista de Adjacência", jPanel11);
+
+        tblListadeUsuario4.setBackground(new java.awt.Color(153, 153, 255));
+        tblListadeUsuario4.setForeground(new java.awt.Color(255, 255, 255));
+        tblListadeUsuario4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Usuário", "Idade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(tblListadeUsuario4);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Lista Adjacência AVL", jPanel12);
+
+        pnlListaUsuarios.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 480, 430));
 
         pnlCards.add(pnlListaUsuarios, "pnlListaUsuarios");
 
@@ -1008,79 +1118,81 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
-        
-        
-        if(tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()){
+
+
+        if (tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()) {
             lblAVISO.setText("Por favor, preencha todos os campos");
-        }else{
-        String nome = tfAddUsuarioNome.getText();
-        int idade = Integer.parseInt(tfAddUsuarioIdade.getText());
-        
-            if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
-            //se o usuario já foi cadastrado antes
-           lblAVISO.setText("Este usuário já foi previavente inserido!");
-        }else if(grafo.contUsuario==0){//se ainda houver a possibilidade de inserir mais usuarios
+        } else {
+            String nome = tfAddUsuarioNome.getText();
+            int idade = Integer.parseInt(tfAddUsuarioIdade.getText());
             
-            lblAVISO.setText("Limite máximo de usuários cadastrados atingido");
-                
-        }else{
-            grafo.insereUsuario(nome,idade);
-            lblAVISO.setText("Usuário cadastrado com sucesso.");
-            tfAddUsuarioNome.setText("");
-            tfAddUsuarioIdade.setText("");
             
-            atualizaCampos();
+
+            if (grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())) {
+                //se o usuario já foi cadastrado antes
+                lblAVISO.setText("Este usuário já foi previavente inserido!");
+            } else if (grafo.contUsuario == 0) {//se ainda houver a possibilidade de inserir mais usuarios
+
+                lblAVISO.setText("Limite máximo de usuários cadastrados atingido");
+
+            } else {
+                grafo.insereUsuario(nome, idade);
+                lblAVISO.setText("Usuário cadastrado com sucesso.");
+                tfAddUsuarioNome.setText("");
+                tfAddUsuarioIdade.setText("");
+
+                atualizaCampos();
+            }
+
         }
-        
-        }
-            
-        
-        
+
     }//GEN-LAST:event_btnAddUsuarioActionPerformed
 
     private void btnCadastrarRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacaoActionPerformed
         // TODO fazer verificação se relação já existe
-        
-        if(tfAddRelUsuario.getText().isEmpty() || tfAddRelSeguidor.getText().isEmpty() || tfAddRelTempo.getText().isEmpty() ){
+
+
+        if (tfAddRelUsuario.getText().isEmpty() || tfAddRelSeguidor.getText().isEmpty() || tfAddRelTempo.getText().isEmpty()) {
             lblAvisoRelacionamento.setText("Por favor, preencha todos os campos");
-        }else{
-        String usuario = tfAddRelUsuario.getText();
-        String seguidor = tfAddRelSeguidor.getText();
-        int tempo = Integer.parseInt(tfAddRelTempo.getText());
-         
-            //verificando se os input informados
-            //já foram cadastrados anteriormente
-            if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
-                lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
+        } else {
+            String usuario = tfAddRelUsuario.getText();
+            String seguidor = tfAddRelSeguidor.getText();
+            int tempo = Integer.parseInt(tfAddRelTempo.getText());
 
-            }else{
-                grafo.insereRelacao(usuario,seguidor,tempo);
-                lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
-                tfAddRelUsuario.setText("");
-                tfAddRelSeguidor.setText("");
-                tfAddRelTempo.setText("");
+            if (ProcuraUsuario(usuario, lblAvisoRelacionamento)) {
+                if (ProcuraUsuario(seguidor, lblAvisoRelacionamento)) {
+                    //verificando se os input informados
+                    //já foram cadastrados anteriormente
+                    if (!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)) {
+                        lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
 
-                atualizaCampos();
+                    } else {
+                        grafo.insereRelacao(usuario, seguidor, tempo);
+                        lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
+                        tfAddRelUsuario.setText("");
+                        tfAddRelSeguidor.setText("");
+                        tfAddRelTempo.setText("");
 
+                        atualizaCampos();
+
+                    }
+                }
             }
+
         }
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnCadastrarRelacaoActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlCards, "pnlListaUsuarios");
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jComboBoxUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUsuariosActionPerformed
-      
-        
+
+
     }//GEN-LAST:event_jComboBoxUsuariosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1101,28 +1213,31 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
 
-        
-        
-        if(tfDeletarUsuario.getText().isEmpty()){
+
+        if (tfDeletarUsuario.getText().isEmpty()) {
             jLabel20.setText("Por favor, preencha o campo");
-        }else{
+        } else {
             String usuario = tfDeletarUsuario.getText();
-            //se o usuario informado existe
-            if(grafo.ListaUsuarios.contains(usuario)){
-                grafo.removeUsuario(usuario);
-                grafo.ListaUsuarios.remove(usuario);
-                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
-                jComboBoxUsuarios.setModel(model);
+            if (ProcuraUsuario(usuario, jLabel20)) {
+                //se o usuario informado existe
+                if (grafo.ListaUsuarios.contains(usuario)) {
+                    grafo.removeUsuario(usuario);
+                    grafo.ListaUsuarios.remove(usuario);
+                    DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+                    jComboBoxUsuarios.setModel(model);
 
-                jLabel20.setText("Usuario deletado");
+                    jLabel20.setText("Usuario deletado");
 
-            }else{
-                jLabel20.setText("Usuario não encontrado");
+                } else {
+                    jLabel20.setText("Usuario não encontrado");
+                }
+                tfDeletarUsuario.setText("");
+                atualizaCampos();
             }
-            tfDeletarUsuario.setText("");
-            atualizaCampos();
+
         }
-        
+
+
 
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
 
@@ -1130,27 +1245,28 @@ public class TelaMain extends javax.swing.JFrame {
         // Atualizando dados entre as classes
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
-        
 
-        
-        if(tfDeletaRusu.getText().isEmpty() ||tfDeletaRsegue.getText().isEmpty() ){
+        if (tfDeletaRusu.getText().isEmpty() || tfDeletaRsegue.getText().isEmpty()) {
             jLabel19.setText(" Por favor, preencha todos os campos");
-        }else{
-           
-        String usuario = tfDeletaRusu.getText();
-        String segue = tfDeletaRsegue.getText(); 
-            
-             if(matriz.ExisteRelacao(usuario, segue)){
-             grafo.removeRelacao(usuario,segue);
-            
-            jLabel19.setText(" Relação deletada");
-            }else{
-                jLabel19.setText("Relação não encontrada, verifique a grafia");
+        } else {
+            String usuario = tfDeletaRusu.getText();
+            String segue = tfDeletaRsegue.getText();
+            if (ProcuraUsuario(usuario, jLabel19)) {
+                if (matriz.ExisteRelacao(usuario, segue)) {
+                    grafo.removeRelacao(usuario, segue);
+
+                    jLabel19.setText(" Relação deletada");
+                } else {
+                    jLabel19.setText("Relação não encontrada, verifique a grafia");
+                }
+                atualizaCampos();
+                tfDeletaRusu.setText("");
+                tfDeletaRsegue.setText("");
             }
-            atualizaCampos();
-            }
-        
-       
+
+        }
+
+
 
     }//GEN-LAST:event_btnAddUsuario2ActionPerformed
 
@@ -1158,49 +1274,47 @@ public class TelaMain extends javax.swing.JFrame {
         // Atualizando dados entre as classes
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
-        
 
 
-        if(tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() ||tfAtualizaTempo.getText().isEmpty()){
+        if (tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() || tfAtualizaTempo.getText().isEmpty()) {
             jLabel18.setText("Por favor, preencha todos os campos");
-        }else{
+        } else {
             String usuario = tfAtualizaNome.getText();
             String segue = tfAtualizaSegue.getText();
             int tempo = Integer.parseInt(tfAtualizaTempo.getText());
-            
-            
 
-        //verificando se os inputs informado constam nos dados armazenados
-        if(matriz.ExisteRelacao(usuario, segue)){
-            
-            grafo.atualizarRelacao(usuario,segue,tempo);
-            jLabel18.setText("Relacionamento atualizado com sucesso");
-        }else{
-            //os dados não existem
+            if (ProcuraUsuario(usuario, jLabel18)) {
+                if (ProcuraUsuario(segue, jLabel18)) {
+                    //se o campo usuario existe e o seguidor não   
+                    //verificando se os inputs informado constam nos dados armazenados
+                    if (matriz.ExisteRelacao(usuario, segue)) {
 
-                //pergunta ao usuário se ele deseja adicina-los
-                if(JOptionPane.showConfirmDialog(null, "Relacionamento não encontrado \n Deseja adiciona-lo?", "WARNING",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                        grafo.atualizarRelacao(usuario, segue, tempo);
+                        jLabel18.setText("Relacionamento atualizado com sucesso");
+                    } else {
+                        //os dados não existem
+                        //pergunta ao usuário se ele deseja adicina-los
+                        if (JOptionPane.showConfirmDialog(null, "Relacionamento não encontrado \n Deseja adiciona-lo?", "WARNING",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-                        grafo.insereRelacao(usuario, segue, tempo);
-                        jLabel18.setText("Relacionamento cadastrado com sucesso");
-                }else{
-                    remove(this);
+                            grafo.insereRelacao(usuario, segue, tempo);
+                            jLabel18.setText("Relacionamento cadastrado com sucesso");
+                        } else {
+                            remove(this);
+                        }
+
+                    }
                 }
-            
-            
             }
 
-        tfAtualizaNome.setText("");
-        tfAtualizaSegue.setText("");
-        tfAtualizaTempo.setText("");
-        
-        atualizaCampos();
+            tfAtualizaNome.setText("");
+            tfAtualizaSegue.setText("");
+            tfAtualizaTempo.setText("");
 
+            atualizaCampos();
         }
-        
 
-        
+
     }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1208,77 +1322,83 @@ public class TelaMain extends javax.swing.JFrame {
             // TODO add your handling code here:
             grafo.LerArquivo();
         } catch (IOException ex) {
-            Logger.getLogger(TelaMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaMain.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //Atualizando o comboBox de usuarios
-                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
-                jComboBoxUsuarios.setModel(model);
-                
-                atualizaCampos();
-                JOptionPane.showMessageDialog(rootPane, "50 usuários foram inseridos \n Cerca de 200 relacionamentos foram inseridos.");
+        DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+        jComboBoxUsuarios.setModel(model);
+
+        atualizaCampos();
+        JOptionPane.showMessageDialog(rootPane, "50 usuários foram inseridos \n Cerca de 200 relacionamentos foram inseridos.");
     }//GEN-LAST:event_jButton9ActionPerformed
+
 
     
     public void PreeencheTabelas(String nome, int posicao){       
         ArrayList<Seguidor> segue, seguidor = new ArrayList();     
         ArrayList<Usuario> seguidor2 = new ArrayList();    
         
+
         //ATENÇÃO = atualizando a matriz atual com a matriz do grafo
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
 
         int posMatriz = matriz.listaNomes.indexOf(nome);
 
-        
-        seguidor = matriz.listarSequidores(nome,posMatriz);
+
+        seguidor = matriz.listarSequidores(nome, posMatriz);
         segue = matriz.listarSeque(nome, posMatriz);
-        
-      
+
+
+
         //Preenchendo os relacionamentos pela matriz
-        DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable5.getModel();
-        DefaultTableModel modelomatriz2 = (DefaultTableModel)jTable6.getModel();
-        
+        DefaultTableModel modelomatriz1 = (DefaultTableModel) jTable5.getModel();
+        DefaultTableModel modelomatriz2 = (DefaultTableModel) jTable6.getModel();
+
         modelomatriz1.setNumRows(0);
         modelomatriz2.setNumRows(0);
-        
-        for(Seguidor x :seguidor){
+
+        for (Seguidor x : seguidor) {
             Vector linha = new Vector();
             linha.add(x.nome);
             linha.add(x.tempo);
             modelomatriz1.addRow(linha);
         }
-        for(Seguidor y :segue){
+        for (Seguidor y : segue) {
             Vector linha = new Vector();
             linha.add(y.nome);
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
 
+
+        //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        seguidor = grafo.lista.listarSequidores(nome, posMatriz);
+        segue = grafo.lista.listarSeque(nome);
+
+        DefaultTableModel modelomatriz3 = (DefaultTableModel) jTable9.getModel();
+        DefaultTableModel modelomatriz4 = (DefaultTableModel) jTable10.getModel();
+
+        modelomatriz3.setNumRows(0);
+        modelomatriz4.setNumRows(0);
+
+        for (Seguidor x : seguidor) {
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz3.addRow(linha);
+        }
+        for (Seguidor y : segue) {
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz4.addRow(linha);
+        }
+
         
-//   //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
-//        seguidor = grafo.lista.listarSequidores(nome,posMatriz);
-//        segue = grafo.lista.listarSeque(nome);
-//        
-//        
-//        DefaultTableModel modelomatriz3 = (DefaultTableModel)jTable9.getModel();
-//        DefaultTableModel modelomatriz4 = (DefaultTableModel)jTable10.getModel();
-//        
-//        modelomatriz3.setNumRows(0);
-//        modelomatriz4.setNumRows(0);
-//        
-//        for(Seguidor x :seguidor){
-//            Vector linha = new Vector();
-//            linha.add(x.nome);
-//            linha.add(x.tempo);
-//            modelomatriz3.addRow(linha);
-//        }
-//        for(Seguidor y :segue){
-//            Vector linha = new Vector();
-//            linha.add(y.nome);
-//            linha.add(y.tempo);
-//            modelomatriz4.addRow(linha);
-//        }
+
 //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
         seguidor2 = grafo.avl.listarSequidores(nome,posMatriz);
         segue = grafo.avl.listarSeque(nome, posicao);
@@ -1305,10 +1425,9 @@ public class TelaMain extends javax.swing.JFrame {
         
         
 
-    }
-    
 
-    
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1326,13 +1445,17 @@ public class TelaMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMain.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1342,56 +1465,80 @@ public class TelaMain extends javax.swing.JFrame {
                 try {
                     new TelaMain().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(TelaMain.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TelaMain.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         });
     }
-    
-   public void atualizaCampos(){
-           //atuzalizando a lista de usuarios
-           DefaultTableModel modelo = (DefaultTableModel) tblListadeUsuario.getModel();
-           modelo.setNumRows(0);
-                for (int i = 0; i < grafo.ListaUsuarios.size(); i++) {
-                 String NomeUsuario = grafo.ListaUsuarios.get(i);
-                 Vector linha = new Vector();
-                 linha.add(NomeUsuario);
-                 modelo.addRow(linha);
+
+    public void atualizaCampos() {
+        //atuzalizando a lista de usuarios
+        DefaultTableModel modelo = (DefaultTableModel) tblListadeUsuario.getModel();
+        modelo.setNumRows(0);
+        for (int i = 0; i < grafo.ListaUsuarios.size(); i++) {
+            String NomeUsuario = grafo.ListaUsuarios.get(i);
+            Vector linha = new Vector();
+            linha.add(NomeUsuario);
+            modelo.addRow(linha);
+
+        }
+
+        //Atualizando o comboBox de usuarios
+        DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+        jComboBoxUsuarios.setModel(model);
+        jComboBoxUsuarios.setSelectedIndex(0);
+
+        //verifica se existe seguidores velhos
+        PreencheSeguidoresVelhos();
+
+    }
+
+    public void PreencheSeguidoresVelhos() {
+
+        matriz.matriz = grafo.matriz.matriz;
+        matriz.listaNomes = grafo.matriz.listaNomes;
+        matriz.ListaUsuarios = grafo.matriz.ListaUsuarios;
+
+        DefaultTableModel tbl1 = (DefaultTableModel) tblListadeUsuario2.getModel();
+        tbl1.setNumRows(0);
+        ArrayList<Usuario> nomeIdade = new ArrayList();
+        nomeIdade = matriz.listarSeguidoresVelhos();
         
-             }
-          
-                //Atualizando o comboBox de usuarios
-                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
-                jComboBoxUsuarios.setModel(model);
-                jComboBoxUsuarios.setSelectedIndex(0);
-                
-                //verifica se existe seguidores velhos
-                
-                    PreencheSeguidoresVelhos();
-                
-                             
-   }
-   
-   public void PreencheSeguidoresVelhos(){
-       System.out.println("atualizou");
-       matriz.matriz = grafo.matriz.matriz;
-       matriz.listaNomes = grafo.matriz.listaNomes;
-       matriz.ListaUsuarios = grafo.matriz.ListaUsuarios;
-       
-       DefaultTableModel modelo2 = (DefaultTableModel) tblListadeUsuario2.getModel();
-       modelo2.setNumRows(0);
-       ArrayList<Usuario> nomeIdade = new ArrayList();
-       nomeIdade = matriz.listarSeguidoresVelhos();
         for (Usuario usu : nomeIdade) {
             Vector linha = new Vector();
             linha.add(usu.nome);
             linha.add(usu.idade);
-            modelo2.addRow(linha);
+            tbl1.addRow(linha);
 
-     }
-                
-   }
+        }
+        
+        //============ LISTA ========================
+        DefaultTableModel tbl2 = (DefaultTableModel) tblListadeUsuario3.getModel();
+        tbl2.setNumRows(0);
+        ArrayList<Usuario> nomeIdade2 = new ArrayList();
+        nomeIdade2 = grafo.lista.listarSeguidoresVelhos();
+        
+        
+        for (Usuario usu : nomeIdade) {
+            Vector linha = new Vector();
+            linha.add(usu.nome);
+            linha.add(usu.idade);
+            tbl2.addRow(linha);
+
+        }
+    }
+
+    public boolean ProcuraUsuario(String nome, JLabel label) {
+        if (!grafo.ListaUsuarios.contains(nome)) {
+            label.setText("Usuário " + nome + " não encontrado");
+            return false;
+        }
+
+        return true;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUsuario;
@@ -1442,6 +1589,8 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1449,16 +1598,20 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable12;
@@ -1487,6 +1640,8 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlListarRelacionamentos;
     private javax.swing.JTable tblListadeUsuario;
     private javax.swing.JTable tblListadeUsuario2;
+    private javax.swing.JTable tblListadeUsuario3;
+    private javax.swing.JTable tblListadeUsuario4;
     private javax.swing.JTextField tfAddRelSeguidor;
     private javax.swing.JTextField tfAddRelTempo;
     private javax.swing.JTextField tfAddRelUsuario;
