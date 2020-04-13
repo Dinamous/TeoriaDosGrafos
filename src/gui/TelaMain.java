@@ -1009,10 +1009,14 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
         
+        
+        if(tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()){
+            lblAVISO.setText("Por favor, preencha todos os campos");
+        }else{
         String nome = tfAddUsuarioNome.getText();
         int idade = Integer.parseInt(tfAddUsuarioIdade.getText());
-                
-        if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
+        
+            if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
             //se o usuario já foi cadastrado antes
            lblAVISO.setText("Este usuário já foi previavente inserido!");
         }else if(grafo.contUsuario==0){//se ainda houver a possibilidade de inserir mais usuarios
@@ -1028,29 +1032,41 @@ public class TelaMain extends javax.swing.JFrame {
             atualizaCampos();
         }
         
+        }
+            
+        
+        
     }//GEN-LAST:event_btnAddUsuarioActionPerformed
 
     private void btnCadastrarRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacaoActionPerformed
         // TODO fazer verificação se relação já existe
+        
+        if(tfAddRelUsuario.getText().isEmpty() || tfAddRelSeguidor.getText().isEmpty() || tfAddRelTempo.getText().isEmpty() ){
+            lblAvisoRelacionamento.setText("Por favor, preencha todos os campos");
+        }else{
         String usuario = tfAddRelUsuario.getText();
         String seguidor = tfAddRelSeguidor.getText();
         int tempo = Integer.parseInt(tfAddRelTempo.getText());
-        
-        //verificando se os input informados
-        //já foram cadastrados anteriormente
-        if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
-            lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
-           
-        }else{
-            grafo.insereRelacao(usuario,seguidor,tempo);
-            lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
-            tfAddRelUsuario.setText("");
-            tfAddRelSeguidor.setText("");
-            tfAddRelTempo.setText("");
-            
-            atualizaCampos();
-   
+         
+            //verificando se os input informados
+            //já foram cadastrados anteriormente
+            if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
+                lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
+
+            }else{
+                grafo.insereRelacao(usuario,seguidor,tempo);
+                lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
+                tfAddRelUsuario.setText("");
+                tfAddRelSeguidor.setText("");
+                tfAddRelTempo.setText("");
+
+                atualizaCampos();
+
+            }
         }
+        
+        
+        
         
         
         
@@ -1084,22 +1100,30 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
-        String usuario = tfDeletarUsuario.getText();
+
         
-        //se o usuario informado existe
-        if(grafo.ListaUsuarios.contains(usuario)){
-            grafo.removeUsuario(usuario);
-            grafo.ListaUsuarios.remove(usuario);
-            DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
-            jComboBoxUsuarios.setModel(model);
-            
-            jLabel20.setText("Usuario deletado");
-            
+        
+        if(tfDeletarUsuario.getText().isEmpty()){
+            jLabel20.setText("Por favor, preencha o campo");
         }else{
-            jLabel20.setText("Usuario não encontrado");
+            String usuario = tfDeletarUsuario.getText();
+            //se o usuario informado existe
+            if(grafo.ListaUsuarios.contains(usuario)){
+                grafo.removeUsuario(usuario);
+                grafo.ListaUsuarios.remove(usuario);
+                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+                jComboBoxUsuarios.setModel(model);
+
+                jLabel20.setText("Usuario deletado");
+
+            }else{
+                jLabel20.setText("Usuario não encontrado");
+            }
+            tfDeletarUsuario.setText("");
+            atualizaCampos();
         }
-        tfDeletarUsuario.setText("");
-        atualizaCampos();
+        
+
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
 
     private void btnAddUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario2ActionPerformed
@@ -1107,17 +1131,27 @@ public class TelaMain extends javax.swing.JFrame {
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
         
-        String usuario = tfDeletaRusu.getText();
-        String segue = tfDeletaRsegue.getText();
+
         
-        if(matriz.ExisteRelacao(usuario, segue)){
+        if(tfDeletaRusu.getText().isEmpty() ||tfDeletaRsegue.getText().isEmpty() ){
+            jLabel19.setText(" Por favor, preencha todos os campos");
+        }else{
+           
+        String usuario = tfDeletaRusu.getText();
+        String segue = tfDeletaRsegue.getText(); 
+            
+             if(matriz.ExisteRelacao(usuario, segue)){
              grafo.removeRelacao(usuario,segue);
             
-            jLabel19.setText("            Relação deletada");
-        }else{
-            jLabel19.setText("Relação não encontrada, verifique a grafia");
-        }
-        atualizaCampos();
+            jLabel19.setText(" Relação deletada");
+            }else{
+                jLabel19.setText("Relação não encontrada, verifique a grafia");
+            }
+            atualizaCampos();
+            }
+        
+       
+
     }//GEN-LAST:event_btnAddUsuario2ActionPerformed
 
     private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
@@ -1125,10 +1159,17 @@ public class TelaMain extends javax.swing.JFrame {
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
         
-        String usuario = tfAtualizaNome.getText();
-        String segue = tfAtualizaSegue.getText();
-        int tempo = Integer.parseInt(tfAtualizaTempo.getText());
-        
+
+
+        if(tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() ||tfAtualizaTempo.getText().isEmpty()){
+            jLabel18.setText("Por favor, preencha todos os campos");
+        }else{
+            String usuario = tfAtualizaNome.getText();
+            String segue = tfAtualizaSegue.getText();
+            int tempo = Integer.parseInt(tfAtualizaTempo.getText());
+            
+            
+
         //verificando se os inputs informado constam nos dados armazenados
         if(matriz.ExisteRelacao(usuario, segue)){
             
@@ -1136,23 +1177,29 @@ public class TelaMain extends javax.swing.JFrame {
             jLabel18.setText("Relacionamento atualizado com sucesso");
         }else{
             //os dados não existem
-            //pergunta ao usuário se ele deseja adicina-los
-            if(JOptionPane.showConfirmDialog(null, "Relacionamento não encontrado \n Deseja adiciona-lo?", "WARNING",
-            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                
-                    grafo.insereRelacao(usuario, segue, tempo);
-                    jLabel18.setText("Relacionamento cadastrado com sucesso");
-            }else{
-                remove(this);
+
+                //pergunta ao usuário se ele deseja adicina-los
+                if(JOptionPane.showConfirmDialog(null, "Relacionamento não encontrado \n Deseja adiciona-lo?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+
+                        grafo.insereRelacao(usuario, segue, tempo);
+                        jLabel18.setText("Relacionamento cadastrado com sucesso");
+                }else{
+                    remove(this);
+                }
+            
+            
             }
-            
-            
-        }
+
         tfAtualizaNome.setText("");
         tfAtualizaSegue.setText("");
         tfAtualizaTempo.setText("");
         
         atualizaCampos();
+
+        }
+        
+
         
     }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
 
@@ -1175,19 +1222,18 @@ public class TelaMain extends javax.swing.JFrame {
     
     public void PreeencheTabelas(String nome, int posicao){       
         ArrayList<Seguidor> segue, seguidor = new ArrayList();     
+        ArrayList<Usuario> seguidor2 = new ArrayList();    
         
         //ATENÇÃO = atualizando a matriz atual com a matriz do grafo
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
 
         int posMatriz = matriz.listaNomes.indexOf(nome);
+
         
         seguidor = matriz.listarSequidores(nome,posMatriz);
         segue = matriz.listarSeque(nome, posMatriz);
         
-//        for(int i=0;i<50;i++){
-//            System.out.println(matriz.matriz[posicao][i]+" ");
-//        }
       
         //Preenchendo os relacionamentos pela matriz
         DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable5.getModel();
@@ -1208,7 +1254,57 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
-         
+
+        
+//   //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+//        seguidor = grafo.lista.listarSequidores(nome,posMatriz);
+//        segue = grafo.lista.listarSeque(nome);
+//        
+//        
+//        DefaultTableModel modelomatriz3 = (DefaultTableModel)jTable9.getModel();
+//        DefaultTableModel modelomatriz4 = (DefaultTableModel)jTable10.getModel();
+//        
+//        modelomatriz3.setNumRows(0);
+//        modelomatriz4.setNumRows(0);
+//        
+//        for(Seguidor x :seguidor){
+//            Vector linha = new Vector();
+//            linha.add(x.nome);
+//            linha.add(x.tempo);
+//            modelomatriz3.addRow(linha);
+//        }
+//        for(Seguidor y :segue){
+//            Vector linha = new Vector();
+//            linha.add(y.nome);
+//            linha.add(y.tempo);
+//            modelomatriz4.addRow(linha);
+//        }
+//==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        seguidor2 = grafo.avl.listarSequidores(nome,posMatriz);
+        segue = grafo.avl.listarSeque(nome, posicao);
+        
+        
+        DefaultTableModel modelomatriz5 = (DefaultTableModel)jTable11.getModel();
+        DefaultTableModel modelomatriz6 = (DefaultTableModel)jTable12.getModel();
+        
+        modelomatriz5.setNumRows(0);
+        modelomatriz6.setNumRows(0);
+        
+        for(Seguidor x :seguidor){
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz5.addRow(linha);
+        }
+        for(Seguidor y :segue){
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz6.addRow(linha);
+        }
+        
+        
+
     }
     
 

@@ -5,6 +5,7 @@
  */
 package Estruturas;
 
+import Estruturas.AVL.AVL;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class Grafo {
    public int contUsuario=80;
    public MatrizADJ matriz = new MatrizADJ();
+   public AVL avl = new AVL();
    public ArrayList<String> ListaUsuarios = new ArrayList();    
     
     public void inicializaGrafo(){
@@ -32,7 +34,7 @@ public class Grafo {
         
         ListaUsuarios.add(nome);
         matriz.insereUsuario(nome,idade);
-        
+        avl.insereUsuario(nome, idade);
 
         contUsuario--;
         
@@ -44,6 +46,7 @@ public class Grafo {
         int posSeguidor = ListaUsuarios.indexOf(seguidor);
         
         matriz.insereRelacao(posUsuario,posSeguidor,tempo);
+        avl.insereRelacao(usuario, seguidor, tempo);
     }
     
       
@@ -54,20 +57,22 @@ public class Grafo {
     
     public void atualizarRelacao(String usuario,String segue,int tempo){
         matriz.atualizarRelacao(usuario,segue,tempo);
-        
+        avl.atualizarRelacao(usuario, segue, tempo);
         
     }
     
-    public void removeUsuario(String usuario){
-    
+    public void removeUsuario(String usuario){    
         System.out.println("grafo removido:"+usuario+" pos:"+ListaUsuarios.indexOf(usuario));
         matriz.removeUsuario(usuario);
-        
+        avl.removeUsuario(usuario);
+    
     }
+   
     
     public void removeRelacao(String usuario, String segue){
         matriz.removeRelacao(usuario,segue);
-        
+        avl.removeRelacao(usuario, segue);
+
     }
     
     public boolean VerificaUsuarioJaInserido(String nome){
