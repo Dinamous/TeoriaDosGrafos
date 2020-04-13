@@ -13,6 +13,7 @@ public class MatrizADJ {
   
 public void inicializaMatriz(){
         
+    //percorre toda a matriz zerando todas as posições
     for(int i=0;i<50;i++){
         for(int j=0;j<50;j++){
             matriz[i][j]=0;
@@ -23,16 +24,19 @@ public void inicializaMatriz(){
 }
 
 public void insereUsuario(String nome, int idade){
+    //recebe parametros e adicona no objto usuario e insere na lista de nomes
     Usuario usu = new Usuario();
     listaNomes.add(nome);
     usu.nome = nome;
     usu.idade = idade;
+    
     ListaUsuarios.add(usu);
     
     
     }
     
     public void insereRelacao(int posUsuario,int posSeguidor, int tempo){
+        //atribui o tempo na celula corresponde aos usuarios
         matriz[posUsuario][posSeguidor] = tempo;
         
         

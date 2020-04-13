@@ -16,11 +16,14 @@ public class AVL {
     int id = 0;
 
     public void insereUsuario(String nome, int idade) {
+        //recebe parametros e insere no array de usuarios
         Usuario usuario = new Usuario();
         usuario.nome = nome;
         usuario.idade = idade;
         usuario.id = id++;
 
+        //inserindo o nome do usuario no array de nomes
+        //para facilitar a busca depois
         ListaNomes.add(nome);
         ListaUsuarios.add(usuario);
     }
@@ -33,6 +36,7 @@ public class AVL {
         seg.nome = seguidor;
         seg.tempo = tempo;
 
+        //adiciona um objeto seguidor a lista de seguidores deste usuario
         boolean add = ListaUsuarios.get(pos).seguidores.add(seg);
        
 

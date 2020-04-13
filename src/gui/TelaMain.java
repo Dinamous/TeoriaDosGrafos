@@ -155,7 +155,7 @@ public class TelaMain extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         tblListadeUsuario4 = new javax.swing.JTable();
         pnlAtualizarRelacionamento = new javax.swing.JPanel();
-        btnCadastrarRelacao1 = new javax.swing.JButton();
+        btnAtualizaRelacao = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -173,7 +173,7 @@ public class TelaMain extends javax.swing.JFrame {
         tfDeletaRusu = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         tfDeletaRsegue = new javax.swing.JTextField();
-        btnAddUsuario2 = new javax.swing.JButton();
+        btnDeletaRelacao = new javax.swing.JButton();
         lblAVISO2 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         pnlDeletarUsuario = new javax.swing.JPanel();
@@ -181,7 +181,7 @@ public class TelaMain extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         tfDeletarUsuario = new javax.swing.JTextField();
-        btnAddUsuario1 = new javax.swing.JButton();
+        btnDeletaUsuario = new javax.swing.JButton();
         lblAVISO1 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
 
@@ -882,16 +882,16 @@ public class TelaMain extends javax.swing.JFrame {
         pnlAtualizarRelacionamento.setBackground(new java.awt.Color(255, 255, 255));
         pnlAtualizarRelacionamento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCadastrarRelacao1.setBackground(new java.awt.Color(153, 153, 255));
-        btnCadastrarRelacao1.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarRelacao1.setText("CADASTRAR RELAÇÃO");
-        btnCadastrarRelacao1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnCadastrarRelacao1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizaRelacao.setBackground(new java.awt.Color(153, 153, 255));
+        btnAtualizaRelacao.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizaRelacao.setText("CADASTRAR RELAÇÃO");
+        btnAtualizaRelacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnAtualizaRelacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarRelacao1ActionPerformed(evt);
+                btnAtualizaRelacaoActionPerformed(evt);
             }
         });
-        pnlAtualizarRelacionamento.add(btnCadastrarRelacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
+        pnlAtualizarRelacionamento.add(btnAtualizaRelacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel32.setText("Usuário:");
@@ -1010,16 +1010,16 @@ public class TelaMain extends javax.swing.JFrame {
 
         pnlDeletarRelacao.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
-        btnAddUsuario2.setBackground(new java.awt.Color(153, 153, 255));
-        btnAddUsuario2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddUsuario2.setText("DELETAR RELACIONAMENTO");
-        btnAddUsuario2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnAddUsuario2.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletaRelacao.setBackground(new java.awt.Color(153, 153, 255));
+        btnDeletaRelacao.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletaRelacao.setText("DELETAR RELACIONAMENTO");
+        btnDeletaRelacao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnDeletaRelacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUsuario2ActionPerformed(evt);
+                btnDeletaRelacaoActionPerformed(evt);
             }
         });
-        pnlDeletarRelacao.add(btnAddUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 184, 42));
+        pnlDeletarRelacao.add(btnDeletaRelacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 184, 42));
         pnlDeletarRelacao.add(lblAVISO2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
         pnlDeletarRelacao.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 220, 30));
 
@@ -1061,16 +1061,16 @@ public class TelaMain extends javax.swing.JFrame {
 
         pnlDeletarUsuario.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 181, -1, 110));
 
-        btnAddUsuario1.setBackground(new java.awt.Color(153, 153, 255));
-        btnAddUsuario1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddUsuario1.setText("DELETAR USUÁRIO");
-        btnAddUsuario1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnAddUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletaUsuario.setBackground(new java.awt.Color(153, 153, 255));
+        btnDeletaUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletaUsuario.setText("DELETAR USUÁRIO");
+        btnDeletaUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnDeletaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddUsuario1ActionPerformed(evt);
+                btnDeletaUsuarioActionPerformed(evt);
             }
         });
-        pnlDeletarUsuario.add(btnAddUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
+        pnlDeletarUsuario.add(btnDeletaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
         pnlDeletarUsuario.add(lblAVISO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
         pnlDeletarUsuario.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 270, 30));
 
@@ -1118,7 +1118,7 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
-
+        //verifica integridade dos campos
         if (tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()) {
             lblAVISO.setText("Por favor, preencha todos os campos");
         } else {
@@ -1133,6 +1133,7 @@ public class TelaMain extends javax.swing.JFrame {
                 lblAVISO.setText("Limite máximo de usuários cadastrados atingido");
 
             } else {
+                //se tudo correto, então usuario inserido
                 grafo.insereUsuario(nome, idade);
                 lblAVISO.setText("Usuário cadastrado com sucesso.");
                 tfAddUsuarioNome.setText("");
@@ -1163,6 +1164,7 @@ public class TelaMain extends javax.swing.JFrame {
                         lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
 
                     } else {
+                        //se tudo correto insere a relação
                         grafo.insereRelacao(usuario, seguidor, tempo);
                         lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
                         tfAddRelUsuario.setText("");
@@ -1206,9 +1208,10 @@ public class TelaMain extends javax.swing.JFrame {
         cardLayout.show(pnlCards, "pnlDeletarUsuario");
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
+    private void btnDeletaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaUsuarioActionPerformed
         // TODO add your handling code here:
-
+        //removendo usuario
+        
         if (tfDeletarUsuario.getText().isEmpty()) {
             jLabel20.setText("Por favor, preencha o campo");
         } else {
@@ -1216,6 +1219,7 @@ public class TelaMain extends javax.swing.JFrame {
             if (ProcuraUsuario(usuario, jLabel20)) {
                 //se o usuario informado existe
                 if (grafo.ListaUsuarios.contains(usuario)) {
+                    //se tudo correto usuario é removido
                     grafo.removeUsuario(usuario);
                     grafo.ListaUsuarios.remove(usuario);
                     DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
@@ -1233,12 +1237,11 @@ public class TelaMain extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnAddUsuario1ActionPerformed
+    }//GEN-LAST:event_btnDeletaUsuarioActionPerformed
 
-    private void btnAddUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario2ActionPerformed
+    private void btnDeletaRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaRelacaoActionPerformed
         // Atualizando dados entre as classes
-        matriz.matriz = grafo.matriz.matriz;
-        matriz.listaNomes = grafo.matriz.listaNomes;
+        //removendo relação
 
         if (tfDeletaRusu.getText().isEmpty() || tfDeletaRsegue.getText().isEmpty()) {
             jLabel19.setText(" Por favor, preencha todos os campos");
@@ -1247,6 +1250,7 @@ public class TelaMain extends javax.swing.JFrame {
             String segue = tfDeletaRsegue.getText();
             if (ProcuraUsuario(usuario, jLabel19)) {
                 if (matriz.ExisteRelacao(usuario, segue)) {
+                    //se tudo correto, remove relação
                     grafo.removeRelacao(usuario, segue);
 
                     jLabel19.setText(" Relação deletada");
@@ -1262,12 +1266,12 @@ public class TelaMain extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnAddUsuario2ActionPerformed
+    }//GEN-LAST:event_btnDeletaRelacaoActionPerformed
 
-    private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
+    private void btnAtualizaRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizaRelacaoActionPerformed
         // Atualizando dados entre as classes
-        matriz.matriz = grafo.matriz.matriz;
-        matriz.listaNomes = grafo.matriz.listaNomes;
+       
+        //atualizando relação
 
         if (tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() || tfAtualizaTempo.getText().isEmpty()) {
             jLabel18.setText("Por favor, preencha todos os campos");
@@ -1281,7 +1285,7 @@ public class TelaMain extends javax.swing.JFrame {
                     //se o campo usuario existe e o seguidor não   
                     //verificando se os inputs informado constam nos dados armazenados
                     if (matriz.ExisteRelacao(usuario, segue)) {
-
+                        //se tudo correto, atualiza relação
                         grafo.atualizarRelacao(usuario, segue, tempo);
                         jLabel18.setText("Relacionamento atualizado com sucesso");
                     } else {
@@ -1308,9 +1312,11 @@ public class TelaMain extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
+    }//GEN-LAST:event_btnAtualizaRelacaoActionPerformed
 
     private void btnUtilizaScriptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUtilizaScriptsActionPerformed
+        //esta funcção utiliza dos dados do script para inserir informações no programa
+        
         try {
             // TODO add your handling code here:
             grafo.LerArquivo();
@@ -1454,6 +1460,9 @@ public class TelaMain extends javax.swing.JFrame {
     }
 
     public void atualizaCampos() {
+        //toda vez que existe uma alteração, CRUD todo o programa atualiza seu conteudo
+        //em todos os componentes
+        
         //atuzalizando a lista de usuarios
         DefaultTableModel modelo = (DefaultTableModel) tblListadeUsuario.getModel();
         modelo.setNumRows(0);
@@ -1536,10 +1545,10 @@ public class TelaMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUsuario;
-    private javax.swing.JButton btnAddUsuario1;
-    private javax.swing.JButton btnAddUsuario2;
+    private javax.swing.JButton btnAtualizaRelacao;
     private javax.swing.JButton btnCadastrarRelacao;
-    private javax.swing.JButton btnCadastrarRelacao1;
+    private javax.swing.JButton btnDeletaRelacao;
+    private javax.swing.JButton btnDeletaUsuario;
     private javax.swing.JButton btnUtilizaScripts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
