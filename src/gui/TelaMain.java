@@ -11,16 +11,13 @@ import Estruturas.Seguidor;
 import Estruturas.Usuario;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import static java.sql.DriverManager.println;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,7 +38,7 @@ public class TelaMain extends javax.swing.JFrame {
         
         initComponents();
         cardLayout = (CardLayout)(pnlCards.getLayout());
-         jComboBoxUsuarios.addActionListener(jComboBoxUsuarios);
+       
         //toda vez q alguem atualiza o comboBox
        jComboBoxUsuarios.addActionListener ((ActionEvent e) -> {
            
@@ -49,7 +46,7 @@ public class TelaMain extends javax.swing.JFrame {
                 
                 String segue = "Seguidores de "+jComboBoxUsuarios.getSelectedItem()+":";
                 String seguidor= "Usuários que "+jComboBoxUsuarios.getSelectedItem()+" segue:" ;   
-
+                
                 //colocando o nome do usuario nos campos
                 label1.setText(segue);
                 label2.setText(segue);
@@ -59,8 +56,8 @@ public class TelaMain extends javax.swing.JFrame {
                 label6.setText(seguidor);
 
                 PreeencheTabelas(jComboBoxUsuarios.getSelectedItem().toString(),jComboBoxUsuarios.getSelectedIndex());
-           
-           atualizaCampos();
+                
+//           atualizaCampos();
            
            
         });
@@ -156,27 +153,30 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        tfAddRelTempo1 = new javax.swing.JTextField();
-        tfAddRelSeguidor1 = new javax.swing.JTextField();
-        tfAddRelUsuario1 = new javax.swing.JTextField();
+        tfAtualizaTempo = new javax.swing.JTextField();
+        tfAtualizaSegue = new javax.swing.JTextField();
+        tfAtualizaNome = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         lblAvisoRelacionamento1 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         pnlDeletarRelacao = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        tfAddUsuarioNome2 = new javax.swing.JTextField();
+        tfDeletaRusu = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        tfAddUsuarioIdade1 = new javax.swing.JTextField();
+        tfDeletaRsegue = new javax.swing.JTextField();
         btnAddUsuario2 = new javax.swing.JButton();
         lblAVISO2 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         pnlDeletarUsuario = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        tfAddUsuarioNome1 = new javax.swing.JTextField();
+        tfDeletarUsuario = new javax.swing.JTextField();
         btnAddUsuario1 = new javax.swing.JButton();
         lblAVISO1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -740,7 +740,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel16.setText("Lista de Seguidores Mais Velhos");
-        pnlListaUsuarios.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 20, -1, -1));
+        pnlListaUsuarios.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
         tblListadeUsuario2.setBackground(new java.awt.Color(153, 153, 255));
         tblListadeUsuario2.setForeground(new java.awt.Color(255, 255, 255));
@@ -752,12 +752,20 @@ public class TelaMain extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Usuário", "Tempo"
+                "Usuário", "Idade"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(tblListadeUsuario2);
 
-        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 105, 409, 336));
+        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 400, 336));
 
         pnlCards.add(pnlListaUsuarios, "pnlListaUsuarios");
 
@@ -784,11 +792,11 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel34.setText("Segue:");
 
-        tfAddRelTempo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfAtualizaTempo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        tfAddRelSeguidor1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfAtualizaSegue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        tfAddRelUsuario1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfAtualizaNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -800,16 +808,16 @@ public class TelaMain extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel32)
                         .addGap(18, 18, 18)
-                        .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfAtualizaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel34)
                         .addGap(18, 18, 18)
-                        .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfAtualizaSegue, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addComponent(jLabel33)
                         .addGap(18, 18, 18)
-                        .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfAtualizaTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -817,14 +825,14 @@ public class TelaMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfAddRelUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAtualizaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32)
-                    .addComponent(tfAddRelSeguidor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAtualizaSegue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel34))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
-                    .addComponent(tfAddRelTempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAtualizaTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
@@ -837,6 +845,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         lblAvisoRelacionamento1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlAtualizarRelacionamento.add(lblAvisoRelacionamento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 404, 409, 76));
+        pnlAtualizarRelacionamento.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 280, 30));
 
         pnlCards.add(pnlAtualizarRelacionamento, "pnlAtualizarRelacionamento");
 
@@ -851,12 +860,12 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Nome:");
 
-        tfAddUsuarioNome2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfDeletaRusu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("seguidor");
 
-        tfAddUsuarioIdade1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfDeletaRsegue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -868,11 +877,11 @@ public class TelaMain extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfAddUsuarioIdade1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfDeletaRsegue, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfAddUsuarioNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfDeletaRusu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -881,11 +890,11 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(tfAddUsuarioNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDeletaRusu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(tfAddUsuarioIdade1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDeletaRsegue, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -900,8 +909,9 @@ public class TelaMain extends javax.swing.JFrame {
                 btnAddUsuario2ActionPerformed(evt);
             }
         });
-        pnlDeletarRelacao.add(btnAddUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 184, 42));
+        pnlDeletarRelacao.add(btnAddUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 184, 42));
         pnlDeletarRelacao.add(lblAVISO2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
+        pnlDeletarRelacao.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 220, 30));
 
         pnlCards.add(pnlDeletarRelacao, "pnlDeletarRelacao");
 
@@ -916,7 +926,7 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Nome:");
 
-        tfAddUsuarioNome1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfDeletarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -926,7 +936,7 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(87, 87, 87)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDeletarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -935,7 +945,7 @@ public class TelaMain extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(tfAddUsuarioNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDeletarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -952,6 +962,7 @@ public class TelaMain extends javax.swing.JFrame {
         });
         pnlDeletarUsuario.add(btnAddUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 184, 42));
         pnlDeletarUsuario.add(lblAVISO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 417, 260, 22));
+        pnlDeletarUsuario.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 270, 30));
 
         pnlCards.add(pnlDeletarUsuario, "pnlDeletarUsuario");
 
@@ -998,10 +1009,14 @@ public class TelaMain extends javax.swing.JFrame {
     private void btnAddUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuarioActionPerformed
         //Inserindo um novo usuario
         
+        
+        if(tfAddUsuarioNome.getText().isEmpty() || tfAddUsuarioIdade.getText().isEmpty()){
+            lblAVISO.setText("Por favor, preencha todos os campos");
+        }else{
         String nome = tfAddUsuarioNome.getText();
         int idade = Integer.parseInt(tfAddUsuarioIdade.getText());
-                
-        if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
+        
+            if(grafo.VerificaUsuarioJaInserido(tfAddUsuarioNome.getText())){
             //se o usuario já foi cadastrado antes
            lblAVISO.setText("Este usuário já foi previavente inserido!");
         }else if(grafo.contUsuario==0){//se ainda houver a possibilidade de inserir mais usuarios
@@ -1017,29 +1032,41 @@ public class TelaMain extends javax.swing.JFrame {
             atualizaCampos();
         }
         
+        }
+            
+        
+        
     }//GEN-LAST:event_btnAddUsuarioActionPerformed
 
     private void btnCadastrarRelacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacaoActionPerformed
         // TODO fazer verificação se relação já existe
+        
+        if(tfAddRelUsuario.getText().isEmpty() || tfAddRelSeguidor.getText().isEmpty() || tfAddRelTempo.getText().isEmpty() ){
+            lblAvisoRelacionamento.setText("Por favor, preencha todos os campos");
+        }else{
         String usuario = tfAddRelUsuario.getText();
         String seguidor = tfAddRelSeguidor.getText();
         int tempo = Integer.parseInt(tfAddRelTempo.getText());
-        
-        //verificando se os input informados
-        //já foram cadastrados anteriormente
-        if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
-            lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
-           
-        }else{
-            grafo.insereRelacao(usuario,seguidor,tempo);
-            lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
-            tfAddRelUsuario.setText("");
-            tfAddRelSeguidor.setText("");
-            tfAddRelTempo.setText("");
-            
-            atualizaCampos();
-   
+         
+            //verificando se os input informados
+            //já foram cadastrados anteriormente
+            if(!grafo.ListaUsuarios.contains(usuario) && !grafo.ListaUsuarios.contains(seguidor)){
+                lblAvisoRelacionamento.setText(" Dados não conferem. Verifique grafia e tente novamente.");
+
+            }else{
+                grafo.insereRelacao(usuario,seguidor,tempo);
+                lblAvisoRelacionamento.setText("Relacionamento inserido com sucesso.");
+                tfAddRelUsuario.setText("");
+                tfAddRelSeguidor.setText("");
+                tfAddRelTempo.setText("");
+
+                atualizaCampos();
+
+            }
         }
+        
+        
+        
         
         
         
@@ -1047,7 +1074,8 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-         cardLayout.show(pnlCards, "pnlListaUsuarios");
+        cardLayout.show(pnlCards, "pnlListaUsuarios");
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jComboBoxUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUsuariosActionPerformed
@@ -1072,14 +1100,98 @@ public class TelaMain extends javax.swing.JFrame {
 
     private void btnAddUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        if(tfDeletarUsuario.getText().isEmpty()){
+            jLabel20.setText("Por favor, preencha o campo");
+        }else{
+            String usuario = tfDeletarUsuario.getText();
+            //se o usuario informado existe
+            if(grafo.ListaUsuarios.contains(usuario)){
+                grafo.removeUsuario(usuario);
+                grafo.ListaUsuarios.remove(usuario);
+                DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
+                jComboBoxUsuarios.setModel(model);
+
+                jLabel20.setText("Usuario deletado");
+
+            }else{
+                jLabel20.setText("Usuario não encontrado");
+            }
+            tfDeletarUsuario.setText("");
+            atualizaCampos();
+        }
+        
+        
     }//GEN-LAST:event_btnAddUsuario1ActionPerformed
 
     private void btnAddUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUsuario2ActionPerformed
-        // TODO add your handling code here:
+        // Atualizando dados entre as classes
+        matriz.matriz = grafo.matriz.matriz;
+        matriz.listaNomes = grafo.matriz.listaNomes;
+        
+        
+        if(tfDeletaRusu.getText().isEmpty() ||tfDeletaRsegue.getText().isEmpty() ){
+            jLabel19.setText(" Por favor, preencha todos os campos");
+        }else{
+           
+        String usuario = tfDeletaRusu.getText();
+        String segue = tfDeletaRsegue.getText(); 
+            
+             if(matriz.ExisteRelacao(usuario, segue)){
+             grafo.removeRelacao(usuario,segue);
+            
+            jLabel19.setText(" Relação deletada");
+            }else{
+                jLabel19.setText("Relação não encontrada, verifique a grafia");
+            }
+            atualizaCampos();
+            }
+        
+       
     }//GEN-LAST:event_btnAddUsuario2ActionPerformed
 
     private void btnCadastrarRelacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarRelacao1ActionPerformed
-        // TODO add your handling code here:
+        // Atualizando dados entre as classes
+        matriz.matriz = grafo.matriz.matriz;
+        matriz.listaNomes = grafo.matriz.listaNomes;
+        
+
+        if(tfAtualizaNome.getText().isEmpty() || tfAtualizaSegue.getText().isEmpty() ||tfAtualizaTempo.getText().isEmpty()){
+            jLabel18.setText("Por favor, preencha todos os campos");
+        }else{
+            String usuario = tfAtualizaNome.getText();
+            String segue = tfAtualizaSegue.getText();
+            int tempo = Integer.parseInt(tfAtualizaTempo.getText());
+            
+            
+        //verificando se os inputs informado constam nos dados armazenados
+        if(matriz.ExisteRelacao(usuario, segue)){
+            
+            grafo.atualizarRelacao(usuario,segue,tempo);
+            jLabel18.setText("Relacionamento atualizado com sucesso");
+        }else{
+            //os dados não existem
+                //pergunta ao usuário se ele deseja adicina-los
+                if(JOptionPane.showConfirmDialog(null, "Relacionamento não encontrado \n Deseja adiciona-lo?", "WARNING",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+
+                        grafo.insereRelacao(usuario, segue, tempo);
+                        jLabel18.setText("Relacionamento cadastrado com sucesso");
+                }else{
+                    remove(this);
+                }
+            
+            
+            }
+        tfAtualizaNome.setText("");
+        tfAtualizaSegue.setText("");
+        tfAtualizaTempo.setText("");
+        
+        atualizaCampos();
+        }
+        
+        
     }//GEN-LAST:event_btnCadastrarRelacao1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1095,19 +1207,26 @@ public class TelaMain extends javax.swing.JFrame {
                 jComboBoxUsuarios.setModel(model);
                 
                 atualizaCampos();
+                JOptionPane.showMessageDialog(rootPane, "50 usuários foram inseridos \n Cerca de 200 relacionamentos foram inseridos.");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     
     public void PreeencheTabelas(String nome, int posicao){       
         ArrayList<Seguidor> segue, seguidor = new ArrayList();     
+        ArrayList<Usuario> seguidor2 = new ArrayList();    
         
         //ATENÇÃO = atualizando a matriz atual com a matriz do grafo
         matriz.matriz = grafo.matriz.matriz;
         matriz.listaNomes = grafo.matriz.listaNomes;
 
+        int posMatriz = matriz.listaNomes.indexOf(nome);
         
-        seguidor = matriz.listarSequidores(nome,posicao);
-        segue = matriz.listarSeque(nome, posicao);
+        seguidor = matriz.listarSequidores(nome,posMatriz);
+        segue = matriz.listarSeque(nome, posMatriz);
+        
+//        for(int i=0;i<50;i++){
+//            System.out.println(matriz.matriz[posicao][i]+" ");
+//        }
       
         //Preenchendo os relacionamentos pela matriz
         DefaultTableModel modelomatriz1 = (DefaultTableModel)jTable5.getModel();
@@ -1128,6 +1247,54 @@ public class TelaMain extends javax.swing.JFrame {
             linha.add(y.tempo);
             modelomatriz2.addRow(linha);
         }
+        
+//   //==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS LISTAS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+//        seguidor = grafo.lista.listarSequidores(nome,posMatriz);
+//        segue = grafo.lista.listarSeque(nome);
+//        
+//        
+//        DefaultTableModel modelomatriz3 = (DefaultTableModel)jTable9.getModel();
+//        DefaultTableModel modelomatriz4 = (DefaultTableModel)jTable10.getModel();
+//        
+//        modelomatriz3.setNumRows(0);
+//        modelomatriz4.setNumRows(0);
+//        
+//        for(Seguidor x :seguidor){
+//            Vector linha = new Vector();
+//            linha.add(x.nome);
+//            linha.add(x.tempo);
+//            modelomatriz3.addRow(linha);
+//        }
+//        for(Seguidor y :segue){
+//            Vector linha = new Vector();
+//            linha.add(y.nome);
+//            linha.add(y.tempo);
+//            modelomatriz4.addRow(linha);
+//        }
+//==-=-=-=-=-=-=-=-=-=-=-=-=-= TABELAS AVL -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=     
+        seguidor2 = grafo.avl.listarSequidores(nome,posMatriz);
+        segue = grafo.avl.listarSeque(nome, posicao);
+        
+        
+        DefaultTableModel modelomatriz5 = (DefaultTableModel)jTable11.getModel();
+        DefaultTableModel modelomatriz6 = (DefaultTableModel)jTable12.getModel();
+        
+        modelomatriz5.setNumRows(0);
+        modelomatriz6.setNumRows(0);
+        
+        for(Seguidor x :seguidor){
+            Vector linha = new Vector();
+            linha.add(x.nome);
+            linha.add(x.tempo);
+            modelomatriz5.addRow(linha);
+        }
+        for(Seguidor y :segue){
+            Vector linha = new Vector();
+            linha.add(y.nome);
+            linha.add(y.tempo);
+            modelomatriz6.addRow(linha);
+        }
+        
         
     }
     
@@ -1188,7 +1355,32 @@ public class TelaMain extends javax.swing.JFrame {
                 //Atualizando o comboBox de usuarios
                 DefaultComboBoxModel model = new DefaultComboBoxModel(grafo.ListaUsuarios.toArray());
                 jComboBoxUsuarios.setModel(model);
+                jComboBoxUsuarios.setSelectedIndex(0);
                 
+                //verifica se existe seguidores velhos
+                
+                    PreencheSeguidoresVelhos();
+                
+                             
+   }
+   
+   public void PreencheSeguidoresVelhos(){
+       System.out.println("atualizou");
+       matriz.matriz = grafo.matriz.matriz;
+       matriz.listaNomes = grafo.matriz.listaNomes;
+       matriz.ListaUsuarios = grafo.matriz.ListaUsuarios;
+       
+       DefaultTableModel modelo2 = (DefaultTableModel) tblListadeUsuario2.getModel();
+       modelo2.setNumRows(0);
+       ArrayList<Usuario> nomeIdade = new ArrayList();
+       nomeIdade = matriz.listarSeguidoresVelhos();
+        for (Usuario usu : nomeIdade) {
+            Vector linha = new Vector();
+            linha.add(usu.nome);
+            linha.add(usu.idade);
+            modelo2.addRow(linha);
+
+     }
                 
    }
 
@@ -1217,7 +1409,10 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1284,15 +1479,15 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JTable tblListadeUsuario;
     private javax.swing.JTable tblListadeUsuario2;
     private javax.swing.JTextField tfAddRelSeguidor;
-    private javax.swing.JTextField tfAddRelSeguidor1;
     private javax.swing.JTextField tfAddRelTempo;
-    private javax.swing.JTextField tfAddRelTempo1;
     private javax.swing.JTextField tfAddRelUsuario;
-    private javax.swing.JTextField tfAddRelUsuario1;
     private javax.swing.JTextField tfAddUsuarioIdade;
-    private javax.swing.JTextField tfAddUsuarioIdade1;
     private javax.swing.JTextField tfAddUsuarioNome;
-    private javax.swing.JTextField tfAddUsuarioNome1;
-    private javax.swing.JTextField tfAddUsuarioNome2;
+    private javax.swing.JTextField tfAtualizaNome;
+    private javax.swing.JTextField tfAtualizaSegue;
+    private javax.swing.JTextField tfAtualizaTempo;
+    private javax.swing.JTextField tfDeletaRsegue;
+    private javax.swing.JTextField tfDeletaRusu;
+    private javax.swing.JTextField tfDeletarUsuario;
     // End of variables declaration//GEN-END:variables
 }
