@@ -144,8 +144,16 @@ public class TelaMain extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         pnlListaUsuarios = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblListadeUsuario2 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblListadeUsuario3 = new javax.swing.JTable();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        tblListadeUsuario4 = new javax.swing.JTable();
         pnlAtualizarRelacionamento = new javax.swing.JPanel();
         btnCadastrarRelacao1 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
@@ -764,7 +772,110 @@ public class TelaMain extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblListadeUsuario2);
 
-        pnlListaUsuarios.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 400, 336));
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Matriz", jPanel9);
+
+        tblListadeUsuario3.setBackground(new java.awt.Color(153, 153, 255));
+        tblListadeUsuario3.setForeground(new java.awt.Color(255, 255, 255));
+        tblListadeUsuario3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Usuário", "Idade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblListadeUsuario3);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Lista de Adjacência", jPanel11);
+
+        tblListadeUsuario4.setBackground(new java.awt.Color(153, 153, 255));
+        tblListadeUsuario4.setForeground(new java.awt.Color(255, 255, 255));
+        tblListadeUsuario4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Usuário", "Idade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(tblListadeUsuario4);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+
+        jTabbedPane2.addTab("Lista Adjacência AVL", jPanel12);
+
+        pnlListaUsuarios.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 480, 430));
 
         pnlCards.add(pnlListaUsuarios, "pnlListaUsuarios");
 
@@ -1348,18 +1459,33 @@ public class TelaMain extends javax.swing.JFrame {
         matriz.listaNomes = grafo.matriz.listaNomes;
         matriz.ListaUsuarios = grafo.matriz.ListaUsuarios;
 
-        DefaultTableModel modelo2 = (DefaultTableModel) tblListadeUsuario2.getModel();
-        modelo2.setNumRows(0);
+        DefaultTableModel tbl1 = (DefaultTableModel) tblListadeUsuario2.getModel();
+        tbl1.setNumRows(0);
         ArrayList<Usuario> nomeIdade = new ArrayList();
         nomeIdade = matriz.listarSeguidoresVelhos();
+        
         for (Usuario usu : nomeIdade) {
             Vector linha = new Vector();
             linha.add(usu.nome);
             linha.add(usu.idade);
-            modelo2.addRow(linha);
+            tbl1.addRow(linha);
 
         }
+        
+        //============ LISTA ========================
+        DefaultTableModel tbl2 = (DefaultTableModel) tblListadeUsuario3.getModel();
+        tbl2.setNumRows(0);
+        ArrayList<Usuario> nomeIdade2 = new ArrayList();
+        nomeIdade2 = grafo.lista.listarSeguidoresVelhos();
+        
+        
+        for (Usuario usu : nomeIdade) {
+            Vector linha = new Vector();
+            linha.add(usu.nome);
+            linha.add(usu.idade);
+            tbl2.addRow(linha);
 
+        }
     }
 
     public boolean ProcuraUsuario(String nome, JLabel label) {
@@ -1370,6 +1496,7 @@ public class TelaMain extends javax.swing.JFrame {
 
         return true;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddUsuario;
@@ -1420,6 +1547,8 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1427,16 +1556,20 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable12;
@@ -1465,6 +1598,8 @@ public class TelaMain extends javax.swing.JFrame {
     private javax.swing.JPanel pnlListarRelacionamentos;
     private javax.swing.JTable tblListadeUsuario;
     private javax.swing.JTable tblListadeUsuario2;
+    private javax.swing.JTable tblListadeUsuario3;
+    private javax.swing.JTable tblListadeUsuario4;
     private javax.swing.JTextField tfAddRelSeguidor;
     private javax.swing.JTextField tfAddRelTempo;
     private javax.swing.JTextField tfAddRelUsuario;

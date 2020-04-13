@@ -71,7 +71,28 @@ public class ListaADJ {
     
     public ArrayList<Usuario> listarSeguidoresVelhos(){
         ArrayList<Usuario> AL = new ArrayList();
+        boolean velho =false;
         
+        for(Usuario usu :listaUsuarios){
+            velho=false;
+            for(Seguidor seg:usu.listaSeguidor){
+                for(Usuario u :listaUsuarios){
+                    if(seg.nome.equals(u.nome)){
+                        if(usu.idade<u.idade){
+                            
+                            AL.add(usu);
+                            velho = true;
+                        }
+                    }
+                    if(velho){
+                        break;
+                    }
+                }
+                if(velho){
+                        break;
+                    }
+            }
+        }
         return AL;
     }
     
