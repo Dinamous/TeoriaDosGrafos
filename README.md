@@ -1,6 +1,5 @@
 # Teoria dos Grafos
 
-----
 ## MODELAGEM DE RELACIONAMENTOS ENTRE USUÁRIOS DE UMA REDE SOCIAL HIPOTÉTICA
 
 
@@ -20,8 +19,11 @@ estruturas representativas apresentadas no parágrafo anterior. Sumariamente, os
 
 
 ----
-## Funções Implementadas
+## Preview da Aplicação
+![preview da aplicação](src/imagens/layout.gif)
 
+## Funções Implementadas
+As funções abaixo,são métodos requeridos na execução deste projeto, mais informações sobre cada um pode ser obtido expandindo o item.
 
 <details>
   <summary>inicializaGrafos( )</summary>
